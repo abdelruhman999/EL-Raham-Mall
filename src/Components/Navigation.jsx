@@ -135,7 +135,7 @@ export default function Navigation() {
     <img src={logo11} className='size-[100px]' />
     </div>
 
-    <p className='text-white '>العربى جروب 2024 © جميع الحقوق محفوظة</p>
+    <p className='text-white '>الرحمه جروب 2024 © جميع الحقوق محفوظة</p>
     </div>
 
   
