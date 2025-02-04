@@ -2,6 +2,8 @@ import React, { useState, createContext } from 'react';
 import Navpar from '../Components/Navpar';
 import { Routes, Route } from "react-router-dom";
 import Navigation from '../Components/Navigation';
+import Login from '../Components/Login';
+import Register from '../Components/Register';
 
 export const ValueContext = createContext();
 export const CostContext = createContext();
@@ -13,9 +15,15 @@ export default function Home() {
   return (
     <ValueContext.Provider value={{ value, setValue }}>
       <CostContext.Provider value={{ cost, setCost }}>
-        <div className='flex flex-col  gap-[150px]'>
-
+        <div className='flex flex-col  gap-[100px]'>
         <Navpar/>
+
+        <Routes>
+          <Route path='/EL-Raham-Moll/login' element = {<Login/>}/>
+          <Route path='/EL-Raham-Moll/login/Register' element = {<Register/>}/>
+        </Routes>
+       
+
         <Navigation/>
         </div>
       </CostContext.Provider>

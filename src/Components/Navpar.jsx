@@ -112,7 +112,11 @@ export default function Navpar() {
         text-gray-50
          items-center gap-2
           '>
-          <Link className='text-end text-sm'><span className='text-xs'>مرحبا</span><br/>تسجيل الدخول</Link>
+          <Link
+          to={'EL-Raham-Moll/login'}
+          className='text-end text-sm'>
+            <span className='text-xs'>مرحبا</span><br/>تسجيل الدخول
+            </Link>
           <GoPerson className='text-3xl'/>
         </div>
       </div>
