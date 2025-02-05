@@ -76,7 +76,7 @@ export default function Navpar() {
       items-center p-[20px]'>
         <div className='flex  flex-row-reverse items-center gap-[100px]'>
       <div>
-        <p className='poppins-light  text-white'>ELRAHAM-MOLL</p>
+        <Link to={'EL-Raham-Moll/'} className='poppins-light  text-white'>ELRAHAM-MaLL</Link>
       </div>
       <div className='relative'>
       <input

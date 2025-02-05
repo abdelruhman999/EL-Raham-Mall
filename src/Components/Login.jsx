@@ -1,34 +1,32 @@
 import React from 'react'
-import logo1 from '../assets/image/unnamed.png'
 import { Link } from 'react-router-dom'
-import { FaFacebookF } from "react-icons/fa";
+import FacebookCurd from './FacebookCurd';
+import Googlecurd from './Googlecurd';
+import axios from 'axios';
 
 export default function Login() {
+  
+async  function henddellsubmit(){
+    e.preventDefault();
+
+    try{
+      const res = await axios.post("/api/v1/login/",{
+        email_or_phone:"01111111111",
+        password:"963215"        
+      })
+      console.log(`تم تسجيل البيانات بنجاح ${res.data}`);  
+    }
+      catch(error){
+      console.error("حدث خطأ:", error.res?.data || error.message);
+      }
+
+  }
   return (
     <div className=' flex flex-col gap-[50px] items-center'>
         
       <div className='flex gap-[20px]'> 
-        <Link className='bg-blue-900 h-[45px] 
-         flex items-center gap-[50px]  justify-between 
-         hover:scale-105 duration-200  shadow shadow-gray-500'>
-            <div className='flex items-center gap-[20px]'>
-            <FaFacebookF className='text-white pl-4  text-3xl ' />
-            <div className='bg-gray-500 w-[1px] h-[45px]'></div>
-            </div>
-           
-            <p className='text-white pr-2  w-full'>تسجيل الدخول بأستخدام فيسبوك</p>
-           
-          
-        </Link>
-        <Link className='bg-white h-[45px] 
-         flex items-center gap-[50px] justify-between 
-         hover:scale-105 duration-200  shadow shadow-gray-500'>
-             <div className='flex items-center '>
-            <img src={logo1} className='size-[50px]  p-[10px]  ' />
-            <div className='bg-gray-400 w-[1px] h-[45px]'></div>
-             </div>
-            <p className='text-black pr-2'>تسجيل الدخول بأستخدام جوجل</p>
-        </Link>    
+      <FacebookCurd/>
+      <Googlecurd/>
       </div>
 
       
@@ -52,13 +50,16 @@ export default function Login() {
         </Link>
        </div>
 
-        <div className='bg-white
+        <form 
+        onSubmit={henddellsubmit}
+        className='bg-white
         shadow-lg shadow-gray-200 
         rounded  flex flex-col gap-[30px]
         items-end p-[40px]'>
             <h1 className='font-bold text-3xl'>الأعضاء المسجلين</h1>
             <div className='flex flex-col items-end gap-[20px]'>
                 <input
+                required
                  type="text"
                  placeholder='ادخل الايميل / رقم الموبايل'
                  className='text-gray-400 text-end pr-2
@@ -68,6 +69,7 @@ export default function Login() {
                  />
                  <p className='text-sm text-gray-400'>رقم الموبايل بدون كود الدولة مثال: 01155555555</p>
                  <input
+                 required
                  type="text"
                  placeholder='كلمة المرور'
                  className='text-gray-400 w-[450px] outline-none
@@ -89,13 +91,17 @@ export default function Login() {
                     </Link>
                  </div>
             </div>
-            <div className='bg-blue-800 flex 
+            <input
+            type='submit'
+            className='bg-blue-800 flex 
             items-center justify-center
             rounded-lg font-semibold shadow cursor-pointer
-            text-white text-lg w-full h-[55px]'>
+            text-white text-lg w-full h-[55px]'/>
                 تسجيل الدخول
-            </div>
-        </div>
+        
+        </form>
+
+
       </div>
 
     </div>
