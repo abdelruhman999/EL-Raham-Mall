@@ -6,7 +6,6 @@ import { FaLinkedinIn } from "react-icons/fa6";
 import { IoLogoTwitter } from "react-icons/io";
 import { FaYoutube } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa";
-import { Link } from 'react-router-dom';
 import logo1 from '../assets/image/app-store.svg'
 import logo2 from '../assets/image/google-play.svg'
 import logo3 from '../assets/image/alahly-en.svg'
@@ -19,6 +18,7 @@ import logo9 from '../assets/image/valu.svg'
 import logo10 from '../assets/image/vcash-en.svg'
 import logo11 from '../assets/image/visa-en.svg'
 import List from './List';
+import { Link } from 'react-router-dom';
 export default function Navigation() {
   return (
    
@@ -92,34 +92,43 @@ export default function Navigation() {
 
      <List
      header = 'الفئات الرئيسية'
-     text1 = 'تليفزيونات والكترونيات'
-     text2 = 'الأجهزة المنزلية'
-     text3 = 'تكييفات ومنقيات الهواء'
-     text4 = 'منتجات الصحة والعناية الشخصية'
-     text5 = 'ساعات'
-     text6 = 'قطع غيار استهلاكية'
-     text7 = 'منتجات حصرية'
-     text8 = 'عروض وخصومات'
+     texts={[
+        
+          'تليفزيونات والكترونيات',
+          'الأجهزة المنزلية',
+          'تكييفات ومنقيات الهواء',
+          'منتجات الصحة والعناية الشخصية',
+          'ساعات',
+          'قطع غيار استهلاكية',
+          'منتجات حصرية',
+          'عروض وخصومات'   
+        ]}
      />
+
      <List
      header = 'عن الرحمه'
-     text1 = 'من نحن '
-     text2 = 'المدونة '
-     text3 = 'فروعنا الرئيسية  '
-     text4 = 'مراكز خدمة الرحمه   '
-     text5 = 'تطبيقاتنا'
-     text6 = 'خريطة الموقع  '
-     text7 = 'وظائف '
+     texts={[
+         'من نحن ',
+         'المدونة ',
+         'فروعنا الرئيسية  ',
+         'مراكز خدمة الرحمه   ',
+         'تطبيقاتنا',
+         'خريطة الموقع  ',
+         'وظائف '
+
+     ]}
      />
 
      <List
      header = 'خدمة العملاء '
-     text1 = ' الشروط والأحكام '
-     text2 = 'سياسة الخصوصية '
-     text3 = ' سياسة البيع '
-     text4 = ' سياسة الإستبدال و الإرجاع '
-     text5 = 'الدعم والمساعدة'
-     text6 = 'اتصل بنا   ' 
+     texts={[
+        ' الشروط والأحكام ',
+        'سياسة الخصوصية ',
+        ' سياسة البيع ',
+        ' سياسة الإستبدال و الإرجاع ',
+        'الدعم والمساعدة',
+        'اتصل بنا   ' 
+     ]}
      />
 
     </div>

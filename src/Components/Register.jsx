@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import FacebookCurd from './FacebookCurd'
 import Googlecurd from './Googlecurd'
 import Swal from "sweetalert2";
-import axios from 'axios';
+import { sendRequest } from '../calls/request';
 
 export default function Register() {
     const [Firstname ,setFirstname] =useState('')
@@ -32,19 +32,24 @@ export default function Register() {
         Swal.fire("يجب ان يكون رقم الهاتف مكون من 11 رقم")
         return
     }
-    try{
-       const response = await axios.post("/api/v1/register/",{
-        email:Email,
-        phone_number: Phone,
-        password: Firstsecurity,
+
+       await sendRequest(
+        {
+        url:"/api/v1/register/",
+        method:POST,
+        data:{
+            email:Email,
+            phone_number: Phone,
+            password: Firstsecurity,
+        }
         })
-        console.log("تم التسجيل بنجاح:", response.data);
-    }
-    catch(error){
-        console.error("حدث خطأ:", error.response?.data || error.message);
-    }
-
-
+        .then(response => {
+            console.log(response);
+            
+        })
+        .catch(error=>{
+            console.error("حدث خطأ:", error.response?.data || error.message);
+        })
     }
   return (
     <div className='flex flex-col items-center gap-[20px]'>

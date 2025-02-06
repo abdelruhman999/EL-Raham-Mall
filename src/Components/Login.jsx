@@ -2,49 +2,53 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import FacebookCurd from './FacebookCurd';
 import Googlecurd from './Googlecurd';
-import axios from 'axios';
 import Swal from 'sweetalert2';
+import { sendRequest } from '../calls/request';
 
 
 export default function Login() {
 
   const [Message ,setMessage] = useState('')
-  const navigate = useNavigate()
   const [emailORphone , setemailORphone] = useState()
   const [Security , setSecurity] = useState()
+  const navigate = useNavigate()
 
-  function handleSubmit(event) {
+ async function handleSubmit(event) {
     event.preventDefault(); 
 
     if(!emailORphone || !Security){
       Swal.fire("يرجى ملئ جميع الحقول")
       return
-    }
-
-    axios.post("/api/v1/login/", {
-      email_or_phone: emailORphone,
-      password: Security
-    })
-    .then(response => {
-     
-      if (response.status === 200 && response.data.token) {
-        const token = response.data.token;
-        localStorage.setItem("token", token);
-        console.log("تم تسجيل الدخول بنجاح:", response.data);
-        Swal.fire("تم تسجيل الدخول بنجاح ")
-        navigate('/');
-      }
-    })
-    .catch(error => {
-      if (error.response) {
-        console.error(`خطأ ${error.response.status}:`, error.response.data);
+    } 
+  
+       await sendRequest({
+        url:"/api/v1/login/",
+        method:"POST",
+        data:{
+           email_or_phone: emailORphone,
+           password: Security,
+        }
+      })
+      .then(response => {
+        if(response.status === 200 ){
+          const tocken = response.data
+          localStorage.setItem("tocken",tocken)
+          Swal.fire("تم التسجيل بنجاح")
+          navigate('/');
+        }
+      }).catch(error=>{
+        if(error.response){
           setMessage("حدث خطا في الاتصال")
-      } else {
-        console.error("حدث خطأ:", error.message);
-      }
-    });
+        }else{
+          setMessage(`حدث خطأ ${error.message}`)
+        }
+      })
+    
+      
+  
   }
   
+
 
   return (
     <div className=' flex flex-col gap-[50px] items-center'>
