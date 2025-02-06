@@ -1,26 +1,51 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import FacebookCurd from './FacebookCurd';
 import Googlecurd from './Googlecurd';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+
 
 export default function Login() {
-  
-async  function henddellsubmit(){
-    e.preventDefault();
 
-    try{
-      const res = await axios.post("/api/v1/login/",{
-        email_or_phone:"01111111111",
-        password:"963215"        
-      })
-      console.log(`تم تسجيل البيانات بنجاح ${res.data}`);  
+  const [Message ,setMessage] = useState('')
+  const navigate = useNavigate()
+  const [emailORphone , setemailORphone] = useState()
+  const [Security , setSecurity] = useState()
+
+  function handleSubmit(event) {
+    event.preventDefault(); 
+
+    if(!emailORphone || !Security){
+      Swal.fire("يرجى ملئ جميع الحقول")
+      return
     }
-      catch(error){
-      console.error("حدث خطأ:", error.res?.data || error.message);
-      }
 
+    axios.post("/api/v1/login/", {
+      email_or_phone: emailORphone,
+      password: Security
+    })
+    .then(response => {
+     
+      if (response.status === 200 && response.data.token) {
+        const token = response.data.token;
+        localStorage.setItem("token", token);
+        console.log("تم تسجيل الدخول بنجاح:", response.data);
+        Swal.fire("تم تسجيل الدخول بنجاح ")
+        navigate('/');
+      }
+    })
+    .catch(error => {
+      if (error.response) {
+        console.error(`خطأ ${error.response.status}:`, error.response.data);
+          setMessage("حدث خطا في الاتصال")
+      } else {
+        console.error("حدث خطأ:", error.message);
+      }
+    });
   }
+  
+
   return (
     <div className=' flex flex-col gap-[50px] items-center'>
         
@@ -40,7 +65,7 @@ async  function henddellsubmit(){
 
         <h1 className='font-bold text-3xl'>عضو جديد</h1>
         <Link 
-        to={'/EL-Raham-Moll/login/Register'}
+        to={'/Register'}
         className=' flex items-center
             justify-center rounded-lg
             font-semibold border border-blue-600
@@ -51,7 +76,7 @@ async  function henddellsubmit(){
        </div>
 
         <form 
-        onSubmit={henddellsubmit}
+        onSubmit={handleSubmit}
         className='bg-white
         shadow-lg shadow-gray-200 
         rounded  flex flex-col gap-[30px]
@@ -59,6 +84,7 @@ async  function henddellsubmit(){
             <h1 className='font-bold text-3xl'>الأعضاء المسجلين</h1>
             <div className='flex flex-col items-end gap-[20px]'>
                 <input
+                onChange={(e) => setemailORphone(e.target.value)} 
                 required
                  type="text"
                  placeholder='ادخل الايميل / رقم الموبايل'
@@ -69,8 +95,9 @@ async  function henddellsubmit(){
                  />
                  <p className='text-sm text-gray-400'>رقم الموبايل بدون كود الدولة مثال: 01155555555</p>
                  <input
+                  onChange={(e)=>{setSecurity(e.target.value)}}
                  required
-                 type="text"
+                 type="password"
                  placeholder='كلمة المرور'
                  className='text-gray-400 w-[450px] outline-none
                  border rounded h-[55px] text-end pr-2'
@@ -92,15 +119,15 @@ async  function henddellsubmit(){
                  </div>
             </div>
             <input
+            value={"   تسجيل الدخول"}
             type='submit'
             className='bg-blue-800 flex 
             items-center justify-center
             rounded-lg font-semibold shadow cursor-pointer
             text-white text-lg w-full h-[55px]'/>
-                تسجيل الدخول
-        
         </form>
 
+        {Message&& <p className='text-red-500 text-lg '>{Message}</p> }
 
       </div>
 

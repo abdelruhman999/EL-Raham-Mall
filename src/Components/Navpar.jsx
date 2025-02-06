@@ -76,7 +76,7 @@ export default function Navpar() {
       items-center p-[20px]'>
         <div className='flex  flex-row-reverse items-center gap-[100px]'>
       <div>
-        <Link to={'EL-Raham-Moll/'} className='poppins-light  text-white'>ELRAHAM-MaLL</Link>
+        <Link to={'/'} className='poppins-light  text-white'>ELRAHAM-MaLL</Link>
       </div>
       <div className='relative'>
       <input
@@ -93,7 +93,9 @@ export default function Navpar() {
         text-gray-50
          items-center gap-[20px]
         '>
-          <Link className='text-end '><span className='text-xs'>سلة التسوق</span> <br />{cost} ج.م</Link>
+          <Link
+          to={'/ShoppingBage'}
+           className='text-end '><span className='text-xs'>سلة التسوق</span> <br />{cost} ج.م</Link>
           <div className='relative'>
           <CiShoppingCart  className='text-3xl'/>
           <div className='bg-red-500
@@ -113,7 +115,7 @@ export default function Navpar() {
          items-center gap-2
           '>
           <Link
-          to={'EL-Raham-Moll/login'}
+          to={'/login'}
           className='text-end text-sm'>
             <span className='text-xs'>مرحبا</span><br/>تسجيل الدخول
             </Link>

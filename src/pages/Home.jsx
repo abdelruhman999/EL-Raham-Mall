@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Navigation from '../Components/Navigation';
 import Login from '../Components/Login';
 import Register from '../Components/Register';
+import ShoppingBage from '../Components/ShoppingBage';
 
 export const ValueContext = createContext();
 export const CostContext = createContext();
@@ -19,8 +20,9 @@ export default function Home() {
         <Navpar/>
 
         <Routes>
-          <Route path='/EL-Raham-Moll/login' element = {<Login/>}/>
-          <Route path='/EL-Raham-Moll/login/Register' element = {<Register/>}/>
+          <Route path='/login' element = {<Login/>}/>
+          <Route path='/Register' element = {<Register/>}/>
+          <Route path='/ShoppingBage' element = {<ShoppingBage/>}/>
         </Routes>
        
 
