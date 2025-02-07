@@ -6,8 +6,6 @@ import { FaLinkedinIn } from "react-icons/fa6";
 import { IoLogoTwitter } from "react-icons/io";
 import { FaYoutube } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa";
-import logo1 from '../assets/image/app-store.svg'
-import logo2 from '../assets/image/google-play.svg'
 import logo3 from '../assets/image/alahly-en.svg'
 import logo4 from '../assets/image/etisalatcash-en.svg'
 import logo5 from '../assets/image/cib.svg'
@@ -76,15 +74,7 @@ export default function Navigation() {
             </Link>
         </div>
 
-        <div className='flex gap-[40px]'>
-            <Link>
-                <img src={logo2} className='size-[140px]' />
-            </Link>
-
-            <Link>
-                <img src={logo1} className='size-[140px]' />
-            </Link>
-        </div>
+     
 
         </div>
 

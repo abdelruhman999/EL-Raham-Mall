@@ -10,7 +10,9 @@ export default function List(props) {
       {
        props.texts.map((val,index)=>{
           return(
-            <Link key={index}>
+            <Link 
+            to={`${val}`}
+            key={index}>
               {val}
             </Link>
 
