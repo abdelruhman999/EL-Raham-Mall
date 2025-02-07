@@ -53,10 +53,7 @@ export default function Register() {
     }
   return (
     <div className='flex flex-col items-center gap-[20px]'>
-        <div className='flex gap-[20px]'> 
-            <FacebookCurd/>
-            <Googlecurd/>
-        </div>
+       
         <form
         onSubmit={Hendellsubmited}
         className='bg-white p-[30px] items-end gap-[20px] shadow flex flex-col  rounded-lg'>

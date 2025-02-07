@@ -19,11 +19,11 @@ export default function Productsdetails() {
         <div
         onClick={()=>{
             setdata({
-                ...data,
+                ...data, 
                 img:logo1,
                 discription:"هذا الميكرويف يتحمل سخونه سبعه حصان واتنين حمار",
                 price:550
-                
+    
             })
             setValue(value+1)
         }}

@@ -33,7 +33,7 @@ export default function Navpar() {
 
   return (
     <div>
-     <div className='bg-blue-800  text-gray-50
+     <div className='bg-gray-800  text-gray-50
       p-[10px] flex flex-row-reverse items-center
        justify-between 
        '>
@@ -42,36 +42,19 @@ export default function Navpar() {
         العربيه 
       </p>
       <div className='bg-gray-400 w-[0.5px] opacity-50 h-[12px]'></div>
-        </div>
-      <ul className='flex flex-row-reverse
+      </div>
+      <div className='flex flex-row-reverse
        text-xs items-center gap-[20px] pl-[100px] font-semibold'>
-        <li>
-          <Link>
-          المفضله 
-          </Link>
-        </li>
-        <div className='bg-gray-400 w-[0.5px] opacity-50 h-[12px]'></div>
-        <li className=''>
-          <Link>
-          الدعم والمساعده 
-          </Link>
-        </li>
-        <div className='bg-gray-400 w-[0.5px] opacity-50 h-[12px]'></div>
-        <li className=''>
           <Link>
           اتصل بنا 
           </Link>
-        </li>
         <div className='bg-gray-400 w-[0.5px] opacity-50 h-[12px]'></div>
-        <li className=''>
-          <Link>
-          المدونة
-          </Link>
-        </li>
-      </ul>
+        <p>01102840567</p>
+       
+      </div>
       
       </div> 
-     <div className='bg-blue-700 flex
+     <div className='bg-gray-600 flex
       justify-between flex-row-reverse
       items-center p-[20px]'>
         <div className='flex  flex-row-reverse items-center gap-[100px]'>
@@ -98,7 +81,7 @@ export default function Navpar() {
            className='text-end '><span className='text-xs'>سلة التسوق</span> <br />{cost} ج.م</Link>
           <div className='relative'>
           <CiShoppingCart  className='text-3xl'/>
-          <div className='bg-red-500
+          <div className='bg-blue-500
           flex justify-center
            items-center size-[20px]
             rounded-full
@@ -246,7 +229,7 @@ export default function Navpar() {
              
             className='flex items-center gap-2'>
             <IoIosArrowDown/>
-            العلامات التجاريه
+              جميع الموديلات 
             </Link>
           </li>
         </ul>

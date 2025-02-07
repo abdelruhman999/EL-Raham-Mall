@@ -28,7 +28,6 @@ export default function Home() {
       <datacontext.Provider value={{ data,setdata }}>
         <div className='flex flex-col  gap-[100px]'>
         <Navpar/>
-
         <Routes>
           <Route path='/login' element = {<Login/>}/>
           <Route path='/' element = {<Products/>}/>

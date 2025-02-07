@@ -53,13 +53,6 @@ export default function Login() {
   return (
     <div className=' flex flex-col gap-[50px] items-center'>
         
-      <div className='flex gap-[20px]'> 
-      <FacebookCurd/>
-      <Googlecurd/>
-      </div>
-
-      
-
       <div className='flex gap-[10px]'>
 
       <div className='bg-white
