@@ -58,7 +58,8 @@ export default function ShoppingBage() {
                         </tr>
                       </thead>
                       <tbody>
-                     
+                     {
+                      data&&
                         <tr className='text-center'>
                           <td className="border border-gray-300 px-4 py-2">{data.price}</td>
                           <td className="border border-gray-300 px-4 py-2">منتج 1</td>
@@ -81,6 +82,7 @@ export default function ShoppingBage() {
                             
                           </td>
                         </tr>
+                     }
                        
                      
 
