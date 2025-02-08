@@ -10,6 +10,8 @@ import Products from '../Components/Products';
 export const ValueContext = createContext();
 export const CostContext = createContext();
 export const datacontext = createContext()
+export const totalcontext = createContext()
+
 
 export default function Home() {
   const [value, setValue] = useState(()=>{
@@ -17,6 +19,7 @@ export default function Home() {
   });
   const [cost, setCost] = useState(0);
   const [data1, setdata1] = useState([]);
+  const [total,settotal] = useState(0)
   
   // useEffect(() => {
   //   if (data1.length > 0) {
@@ -32,6 +35,7 @@ export default function Home() {
     <ValueContext.Provider value={{ value , setValue }}>
       <CostContext.Provider value={{ cost , setCost }}>
       <datacontext.Provider value={{ data1,setdata1 }}>
+      <totalcontext.Provider value={{ total,settotal }}>
         <div className='flex flex-col  gap-[100px]'>
         <Navpar/>
         <Routes>
@@ -44,6 +48,7 @@ export default function Home() {
 
         <Navigation/>
         </div>
+      </totalcontext.Provider>
       </datacontext.Provider>
       </CostContext.Provider>
     </ValueContext.Provider>

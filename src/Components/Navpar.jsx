@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaSearch } from "react-icons/fa";
 import { GoPerson } from "react-icons/go";
 import { Link } from 'react-router-dom'
 import { CiShoppingCart } from "react-icons/ci";
-import {ValueContext} from '../pages/Home'
+import {datacontext, totalcontext, ValueContext} from '../pages/Home'
 import {CostContext} from '../pages/Home'
 import { FaListUl } from "react-icons/fa";
 import { BiSolidOffer } from "react-icons/bi";
@@ -26,9 +26,22 @@ import 'animate.css';
 
 export default function Navpar() {
   const {value} = useContext(ValueContext)
-  const {cost} = useContext(CostContext)
   const [Bool , setBool] =useState(false)
   const [Correct , setCorrect] =useState(false)
+  const {data1}=useContext(datacontext)
+  const {total,settotal} = useContext(totalcontext)
+
+   useEffect(()=>{
+        if(data1){
+
+          console.log(data1); 
+          data1.map((el=>{
+            console.log(typeof( el.price));
+            const total = data1.reduce((sum,el)=> sum + el.price ,0)
+            settotal(total);     
+          }))
+        }
+      },[data1])
 
 
   return (
@@ -78,7 +91,7 @@ export default function Navpar() {
         '>
           <Link
           to={'/ShoppingBage'}
-           className='text-end '><span className='text-xs'>سلة التسوق</span> <br />{cost} ج.م</Link>
+           className='text-end '><span className='text-xs'>سلة التسوق</span> <br />{total} ج.م</Link>
           <div className='relative'>
           <CiShoppingCart  className='text-3xl'/>
           <div className='bg-blue-500

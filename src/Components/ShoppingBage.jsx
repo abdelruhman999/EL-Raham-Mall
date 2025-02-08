@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react'
-import { datacontext, ValueContext } from '../pages/Home'
+import React, { useContext, useEffect, useState } from 'react'
+import { datacontext, totalcontext, ValueContext } from '../pages/Home'
 import logo1 from '../assets/image/cart-page.svg'
 import { data, Link } from 'react-router-dom'
 import { IoMdArrowDropleft } from "react-icons/io";
@@ -10,20 +10,19 @@ import { surve } from '../utils/surve';
 export default function ShoppingBage() {
     const {value,setValue} = useContext(ValueContext)
     const {data1,setdata1}=useContext(datacontext)
+    const {total} = useContext(totalcontext)
+    
+     
 
     function deleteitem(index){
       setValue(value-1)
       console.log(index);
     setdata1(data1.filter((_,i)=> i !== index))
     }
-    useEffect(()=>{
-      if(data1){
-        console.log(data1); 
-      }
-    },[data1])
+  
   
   return (
-    <div className=' flex flex-col items-center '>
+    <div className=' flex flex-col items-center'>
       {
       (value === 0)?
        <div className='flex flex-col gap-[20px] items-center'>
@@ -50,7 +49,7 @@ export default function ShoppingBage() {
                     الصفحه الرئيسيه
                   </Link>
                   </div>
-                  <p className=''>سلة التسوق</p>
+                  <p>سلة التسوق</p>
                 </div>
 
 
@@ -98,8 +97,6 @@ export default function ShoppingBage() {
                       })
                      }
                        
-                     
-
                       </tbody>
                     </table>
 
@@ -112,7 +109,7 @@ export default function ShoppingBage() {
                         <div className='flex items-end text-gray-500 p-[50px] text-sm w-full  flex-col gap-[5px]'>
                           <div className='flex w-full items-center justify-between'>
                             <p>
-                            ج.م 7,599
+                           {total} ج.م
                             </p>
                             <p>
                              الاجمالي
@@ -128,7 +125,7 @@ export default function ShoppingBage() {
                           </div>
                           <div className='flex w-full items-center justify-between '>
                             <p>
-                            ج.م 7,599
+                            {total} ج.م
                             </p>
                             <p>
                             إجمالي الطلب	

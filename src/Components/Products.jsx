@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { surve } from '../utils/surve';
 import { datacontext, ValueContext } from '../pages/Home';
+import Swal from 'sweetalert2';
 
 
 export default function Products() {
@@ -56,8 +57,8 @@ export default function Products() {
           <SwiperSlide key={el.id}> 
               <div className='pl-[40px]'>
                   <div className='bg-white
-                   justify-between gap-[10px] w-[200px]
-                rounded-lg flex flex-col
+                   justify-between h-[350px] gap-[10px] w-[200px]
+                rounded-lg flex  flex-col
                   items-center p-[15px]'>
                         <img className='size-[100px] rounded' src={surve(`${el.image_1}`)} />
                         <p className='text-sm text-gray-500 w-full
@@ -71,13 +72,14 @@ export default function Products() {
                         <p className='text-lg text-gray-800 font-bold'>{el.price} ج.م</p>
                         <div
                          onClick={()=>{
+                          Swal.fire("شاهد عربة تسوقك")
                                 setdata1([ 
                                    ...data1,
                                 {
                                   id:el.id,
                                   img:el.image_1,
                                   discription:el.description,
-                                  price:el.price
+                                  price:+(el.price)
                                 }
                                  ])
                                 setValue(value+1)
