@@ -4,6 +4,7 @@ import FacebookCurd from './FacebookCurd';
 import Googlecurd from './Googlecurd';
 import Swal from 'sweetalert2';
 import { sendRequest } from '../calls/request';
+import { surve } from '../utils/surve';
 
 
 export default function Login() {

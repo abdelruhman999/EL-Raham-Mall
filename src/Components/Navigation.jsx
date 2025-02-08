@@ -10,6 +10,7 @@ import logo10 from '../assets/image/vcash-en.svg'
 import logo11 from '../assets/image/visa-en.svg'
 import List from './List';
 import { Link } from 'react-router-dom';
+
 export default function Navigation() {
   return (
    
@@ -38,26 +39,36 @@ export default function Navigation() {
      header = 'عن الرحمه'
      texts={[
          'من نحن ',
-         'المدونة ',
-         'فروعنا الرئيسية  ',
-         'مراكز خدمة الرحمه   ',
+         'الفرع الرئيسي',
          'تطبيقاتنا',
-         'خريطة الموقع  ',
-         'وظائف '
+         'عنوانا',
 
      ]}
      />
 
      <List
-     header = 'خدمة العملاء '
+     header = 'جميع الموديلات '
      texts={[
-        ' الشروط والأحكام ',
-        'سياسة الخصوصية ',
-        ' سياسة البيع ',
-        ' سياسة الإستبدال و الإرجاع ',
-        'الدعم والمساعدة',
-        'اتصل بنا   ' 
+        'توشيبا',
+        'تورنيدو',
+        'شارب',
+        'سوني',
+        'البا',
+       
+        
+     ]} 
+     />
+     <List
+     texts={[
+        'كاندي  ' ,
+        'تايجر',
+        'هيلير',
+        'فاست فورورد',
+        'هوون بلس',
+        'جي سي'
+        
      ]}
+
      />
 
     <div className='flex  items-center gap-[30px] 

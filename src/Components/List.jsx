@@ -11,11 +11,10 @@ export default function List(props) {
        props.texts.map((val,index)=>{
           return(
             <Link 
-            to={`${val}`}
-            key={index}>
-              {val}
+                to={`${val}`}
+                key={index}>
+                  {val}
             </Link>
-
           )
       })
       }

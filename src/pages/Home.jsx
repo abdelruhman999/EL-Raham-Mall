@@ -16,16 +16,22 @@ export default function Home() {
   return Number (window.localStorage.getItem("count")||0)
   });
   const [cost, setCost] = useState(0);
-  const [data,setdata] = useState(null)
+  const [data1, setdata1] = useState([]);
   
+  // useEffect(() => {
+  //   if (data1.length > 0) {
+  //     window.localStorage.setItem("data1", JSON.stringify(data1));
+  //   }
+  // }, [data1]);
 
   useEffect(()=>{
     window.localStorage.setItem("count",value)
+    
   },[value])
   return (
     <ValueContext.Provider value={{ value , setValue }}>
       <CostContext.Provider value={{ cost , setCost }}>
-      <datacontext.Provider value={{ data,setdata }}>
+      <datacontext.Provider value={{ data1,setdata1 }}>
         <div className='flex flex-col  gap-[100px]'>
         <Navpar/>
         <Routes>

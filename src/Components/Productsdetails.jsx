@@ -1,17 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
 import logo1 from '../assets/image/mic.jpg'
 import { datacontext, ValueContext } from '../pages/Home';
-
+import useRequest from '../hooks/call'
 export default function Productsdetails() {
     const {data,setdata}=useContext(datacontext)
     const {value,setValue} = useContext(ValueContext)
-    useEffect(()=>{
-        if(data){
+  
 
-            console.log(data);
-        }      
-    },[data])
+  
+   
   return (
+  
     <div className='bg-white gap-[10px] w-[200px] rounded-lg flex flex-col items-center p-[15px]'>
         <img src={logo1} alt="" />
         <p>هذا الميكرويف يتحمل سخونه سبعه حصان واتنين حمار قهقهقه</p>

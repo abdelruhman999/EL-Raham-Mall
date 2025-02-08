@@ -1,17 +1,26 @@
 import React, { useContext, useEffect } from 'react'
 import { datacontext, ValueContext } from '../pages/Home'
 import logo1 from '../assets/image/cart-page.svg'
-import { Link } from 'react-router-dom'
+import { data, Link } from 'react-router-dom'
 import { IoMdArrowDropleft } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import logo2 from '../assets/image/cart-payment-logos.webp'
+import { surve } from '../utils/surve';
 
 export default function ShoppingBage() {
     const {value,setValue} = useContext(ValueContext)
-    const {data}=useContext(datacontext)
-    function deleteitem(){
+    const {data1,setdata1}=useContext(datacontext)
+
+    function deleteitem(index){
       setValue(value-1)
+      console.log(index);
+    setdata1(data1.filter((_,i)=> i !== index))
     }
+    useEffect(()=>{
+      if(data1){
+        console.log(data1); 
+      }
+    },[data1])
   
   return (
     <div className=' flex flex-col items-center '>
@@ -59,17 +68,19 @@ export default function ShoppingBage() {
                       </thead>
                       <tbody>
                      {
-                      data&&
-                        <tr className='text-center'>
-                          <td className="border border-gray-300 px-4 py-2">{data.price}</td>
+                      data1&&
+                      data1.map((el,index)=>{
+                        return(
+                        <tr key={index} className='text-center'>
+                          <td className="border border-gray-300 px-4 py-2">{el.price}</td>
                           <td className="border border-gray-300 px-4 py-2">منتج 1</td>
-                          <td className="border border-gray-300 px-4 py-2">{data.price} </td>
+                          <td className="border border-gray-300 px-4 py-2">{el.price} </td>
                           <td className="border flex  items-center gap-[50px] flex-row-reverse border-gray-300 px-5 py-2">
-                            <img src={data.img} className=' size-[100px]' />
+                            <img src={`${surve(el.img)}`} className=' size-[100px]' />
                             <div className='flex flex-col gap-[10px]'>
-                              <p className='font-semibold text-sm'> {data.discription}</p>
+                              <p className='font-semibold text-sm'> {el.discription}</p>
                               <div
-                              onClick={()=>{deleteitem()}}
+                              onClick={()=>{deleteitem(index)}}
                               className='flex 
                                text-red-500 cursor-pointer 
                                justify-end gap-[5px] items-center'>
@@ -82,6 +93,9 @@ export default function ShoppingBage() {
                             
                           </td>
                         </tr>
+                        )
+
+                      })
                      }
                        
                      
@@ -89,7 +103,7 @@ export default function ShoppingBage() {
                       </tbody>
                     </table>
 
-                      <div className='w-[30%] flex gap-[20px] flex-col items-center
+                      <div className='w-[30%] h-[450px] flex gap-[20px] flex-col items-center
                       rounded-lg  bg-gray-300'>
                        <p className='text-xl w-full p-[10px] text-center'>
                         قيمة الفاتوره 
