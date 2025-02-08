@@ -56,12 +56,18 @@ export default function Products() {
           <SwiperSlide key={el.id}> 
               <div className='pl-[40px]'>
                   <div className='bg-white
-                  h-[300px] justify-between gap-[10px] w-[200px]
+                   justify-between gap-[10px] w-[200px]
                 rounded-lg flex flex-col
                   items-center p-[15px]'>
                         <img className='size-[100px] rounded' src={surve(`${el.image_1}`)} />
                         <p className='text-sm text-gray-500 w-full
-                         font-semibold  text-end'>{el.description}</p>
+                         font-semibold  text-center'>
+                          {el.name}
+                          </p>
+                        <p className='text-sm text-gray-500 w-full
+                         font-semibold  text-end'>
+                          {el.description}
+                          </p>
                         <p className='text-lg text-gray-800 font-bold'>{el.price} ج.م</p>
                         <div
                          onClick={()=>{
