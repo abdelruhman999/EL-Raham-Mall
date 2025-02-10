@@ -4,9 +4,9 @@ import { IoLogoInstagram } from "react-icons/io5";
 import { FaTiktok } from "react-icons/fa";
 import logo3 from '../assets/image/alahly-en.svg'
 import logo4 from '../assets/image/etisalatcash-en.svg'
+import logo10 from '../assets/image/vcash-en.svg'
 import logo5 from '../assets/image/cib.svg'
 import logo7 from '../assets/image/master-card.svg'
-import logo10 from '../assets/image/vcash-en.svg'
 import logo11 from '../assets/image/visa-en.svg'
 import List from './List';
 import { Link } from 'react-router-dom';

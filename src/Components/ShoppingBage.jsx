@@ -1,22 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { datacontext, totalcontext, ValueContext } from '../pages/Home'
+import React, { useContext} from 'react'
+import { datacontext, totalcontext } from '../pages/Home'
 import logo1 from '../assets/image/cart-page.svg'
-import { data, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { IoMdArrowDropleft } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import logo2 from '../assets/image/cart-payment-logos.webp'
 import { surve } from '../utils/surve';
+import Returnhome from './Returnhome';
 
 export default function ShoppingBage() {
-    const {value,setValue} = useContext(ValueContext)
     const {data1,setdata1}=useContext(datacontext)
     const {total} = useContext(totalcontext)
     
      
 
     function deleteitem(index){
-      setValue(value-1)
-      console.log(index);
+     
     setdata1(data1.filter((_,i)=> i !== index))
     }
   
@@ -24,7 +23,7 @@ export default function ShoppingBage() {
   return (
     <div className=' flex flex-col items-center'>
       {
-      (value === 0)?
+      (data1.length === 0)?
        <div className='flex flex-col gap-[20px] items-center'>
         <img src={logo1} /> 
         <p className='font-semibold text-sm'>  عربة التسوق فارغه </p>
@@ -38,19 +37,7 @@ export default function ShoppingBage() {
         </div> 
         :(
             <div className=' pr-[150px] pl-[150px] gap-[30px] w-full flex flex-col  items-center'>
-                <div className='flex self-end flex-row-reverse gap-[10px] items-center'>
-                  <div className='flex text-gray-400
-                   items-center gap-[5px]'>
-                  <IoMdArrowDropleft />
-                  <Link
-                  className='hover:text-blue-500 hover:border-b-[1px] duration-200 hover:border-blue-400'
-                  to={'/'}
-                  >
-                    الصفحه الرئيسيه
-                  </Link>
-                  </div>
-                  <p>سلة التسوق</p>
-                </div>
+              < Returnhome text="سله التسوق "/>
 
 
                 <div className='flex  w-full   flex-col gap-[20px] items-end'>

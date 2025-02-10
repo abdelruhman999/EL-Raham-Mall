@@ -3,8 +3,7 @@ import { FaSearch } from "react-icons/fa";
 import { GoPerson } from "react-icons/go";
 import { Link } from 'react-router-dom'
 import { CiShoppingCart } from "react-icons/ci";
-import {datacontext, totalcontext, ValueContext} from '../pages/Home'
-import {CostContext} from '../pages/Home'
+import {datacontext, totalcontext} from '../pages/Home'
 import { FaListUl } from "react-icons/fa";
 import { BiSolidOffer } from "react-icons/bi";
 import { IoIosArrowDown } from "react-icons/io";
@@ -25,7 +24,7 @@ import 'animate.css';
 
 
 export default function Navpar() {
-  const {value} = useContext(ValueContext)
+ 
   const [Bool , setBool] =useState(false)
   const [Correct , setCorrect] =useState(false)
   const {data1}=useContext(datacontext)
@@ -101,7 +100,7 @@ export default function Navpar() {
             absolute top-[-5px] left-[-10px]
             text-xs
            '>
-            {value}
+            {data1.length}
            </div>
           </div>
         </div>
