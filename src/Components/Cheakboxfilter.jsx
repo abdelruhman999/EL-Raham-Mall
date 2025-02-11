@@ -25,7 +25,7 @@ export default function Cheakboxfilter() {
         setmaxandmin(productsData)
        }else{
 
-           setmaxandmin(productsData.filter((el)=>el.brand.name === name))
+           setmaxandmin(productsData.filter((el)=>el.brand.name == name))
        }
     }
   
