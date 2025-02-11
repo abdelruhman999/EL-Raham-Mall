@@ -8,6 +8,7 @@ import logo7 from '../assets/image/mastercard.png'
 import Buttonpay from './Buttonpay';
 import { surve } from '../utils/surve';
 import Returnhome from './Returnhome';
+import Loader from './Loader';
 
 export default function Productsdetails() {
   const {id} = useParams()
@@ -33,100 +34,107 @@ export default function Productsdetails() {
   return (
     <div className='p-[20px] flex flex-col gap-[50px]' >
       <Returnhome text="تفاصيل المنتج"/>
-    { data&&
-      data.map((el)=>{
-      
-        
-        return(
-          <div className='bg-white  items-center p-[50px] flex justify-center gap-[100px] rounded-lg  shadow-lg' key={el.id}>
-        <div className='flex flex-col items-center gap-[20px]'>
-        
-        <img src={currentimg} className='size-[400px]' />
-        <div className='flex gap-[20px]'>
-        <img
-        onClick={()=>{
-          setcurrentimg(el.image_1)
-          henddeleactive(0)
-        }
-        }
-        src={el.image_1} className={`size-[100px] ${active === 0 ? 'border-blue-700': ''} cursor-pointer border p-[10px]`} />
-        <img
-        onClick={()=>{
-          henddeleactive(1)
-          setcurrentimg(el.image_2)}
-        }
-        src={el.image_2} className={`size-[100px] ${active === 1 ? 'border-blue-700': ''} cursor-pointer border p-[10px]`} />
-        <img
-        onClick={()=>{
-          henddeleactive(2)
-          setcurrentimg(el.image_3)}
-        }
-        src={el.image_3} className={`size-[100px] ${active === 2 ? 'border-blue-700': ''} cursor-pointer border p-[10px]`} />
-        </div>
-
-        </div>
-        <div className='flex items-center  flex-col gap-[50px]'>
-
-         <h1 className='text-2xl font-semibold '>{el.name} </h1>
-        <div className='flex  gap-[50px]'>
-        
-          < div className='flex  items-start flex-col gap-[20px]'>
-            <img src={el.brand.image} alt="logo prand" />
-            <p className='text-xl text-blue-600 font-semibold'>
-              
-             {el.price} <span className='text-sm text-gray-600'> ج.م </span>
-
-            </p>
-            <Link
-            className='hover:text-blue-600 
-             hover:border-b-[0.5px] 
-              border-blue-600 text-gray-500 text-sm text-nowrap duration-200'
-            >
-          <span className='text-blue-600 '>{el.brand.name}</span>  | شاهد المزيد من  <span className='text-blue-600'>{el.categories[0].name} </span>   
-           </Link>
+   
+   {
+    loading?
+     <Loader/>
+     :
+      data&&
+       data.map((el)=>{
+       
          
-          </div>
-
-          <div className='flex  gap-[10px] items-end flex-col '>
-           <p className='text-green-600 font-semibold text-lg'>
-            متوفر
-           </p>
-          
-           <p className=' text-wrap text-gray-600 text-end  text-sm font-semibold w-[300px]'>
-            {el.description}
-           </p>
+         return(
+           <div className='bg-white  items-center p-[50px] flex justify-center gap-[100px] rounded-lg  shadow-lg' key={el.id}>
+         <div className='flex flex-col items-center gap-[20px]'>
+         
+         <img src={currentimg} className='size-[400px]' />
+         <div className='flex gap-[20px]'>
+         <img
+         onClick={()=>{
+           setcurrentimg(el.image_1)
+           henddeleactive(0)
+         }
+         }
+         src={el.image_1} className={`size-[100px] ${active === 0 ? 'border-blue-700': ''} cursor-pointer border p-[10px]`} />
+         <img
+         onClick={()=>{
+           henddeleactive(1)
+           setcurrentimg(el.image_2)}
+         }
+         src={el.image_2} className={`size-[100px] ${active === 1 ? 'border-blue-700': ''} cursor-pointer border p-[10px]`} />
+         <img
+         onClick={()=>{
+           henddeleactive(2)
+           setcurrentimg(el.image_3)}
+         }
+         src={el.image_3} className={`size-[100px] ${active === 2 ? 'border-blue-700': ''} cursor-pointer border p-[10px]`} />
+         </div>
+ 
+         </div>
+         <div className='flex items-center  flex-col gap-[50px]'>
+ 
+          <h1 className='text-2xl font-semibold '>{el.name} </h1>
+         <div className='flex  gap-[50px]'>
+         
+           < div className='flex  items-start flex-col gap-[20px]'>
+             <img src={el.brand.image} alt="logo prand" />
+             <p className='text-xl text-blue-600 font-semibold'>
+               
+              {el.price} <span className='text-sm text-gray-600'> ج.م </span>
+ 
+             </p>
+             <Link
+             className='hover:text-blue-600 
+              hover:border-b-[0.5px] 
+               border-blue-600 text-gray-500 text-sm text-nowrap duration-200'
+             >
+           <span className='text-blue-600 '>{el.brand.name}</span>  | شاهد المزيد من  <span className='text-blue-600'>{el.categories[0].name} </span>   
+            </Link>
           
            </div>
-
-        </div>
-        <div className='bg-gray-300 w-full h-[0.2px]'></div>
-        <div className='self-end flex flex-col gap-[20px]'>
-            <p className='self-end text-gray-600 text-lg'>
-              : ادفع من خلال بوابات الدفع الالكترونيه 
+ 
+           <div className='flex  gap-[10px] items-end flex-col '>
+            <p className='text-green-600 font-semibold text-lg'>
+             متوفر
             </p>
-           <div className='flex  justify-center   gap-[50px]'>
-            <img src={logo10} alt="logo" className='w-[100px] h-[50px] rounded' />
-            <img src={logo7} alt="logo" className='w-[130px] h-[50px] ' />
-            <img src={logo4} alt="logo" className='w-[100px] h-[50px] rounded' />
+           
+            <p className=' text-wrap text-gray-600 text-end  text-sm font-semibold w-[300px]'>
+             {el.description}
+            </p>
+           
+            </div>
+ 
+         </div>
+         <div className='bg-gray-300 w-full h-[0.2px]'></div>
+         <div className='self-end flex flex-col gap-[20px]'>
+             <p className='self-end text-gray-600 text-lg'>
+               : ادفع من خلال بوابات الدفع الالكترونيه 
+             </p>
+            <div className='flex  justify-center   gap-[50px]'>
+             <img src={logo10} alt="logo" className='w-[100px] h-[50px] rounded' />
+             <img src={logo7} alt="logo" className='w-[130px] h-[50px] ' />
+             <img src={logo4} alt="logo" className='w-[100px] h-[50px] rounded' />
+            </div>
            </div>
-          </div>
-          <div className='bg-gray-300 w-full h-[0.2px]'></div>
+           <div className='bg-gray-300 w-full h-[0.2px]'></div>
+ 
+           <Buttonpay
+           font={18}
+            number = {500}
+            height = {50}
+            key={el.id} 
+            props = {el}
+            />
+         </div>
+     
+ 
+     </div>
+        )
+   
+     })
+     
 
-          <Buttonpay
-          font={18}
-           number = {500}
-           height = {50}
-           key={el.id} 
-           props = {el}
-           />
-        </div>
-    
-
-    </div>
-       )
-  
-    })
-    }
+   }
 </div>
   )
 }

@@ -16,7 +16,8 @@ export default function ShoppingBage() {
 
     function deleteitem(index){
      
-    setdata1(data1.filter((_,i)=> i !== index))
+   setdata1(data1.filter((_,i)=> i !== index))
+  
     }
   
   

@@ -1,15 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import useRequest from '../hooks/call';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { surve } from '../utils/surve';
-import { datacontext } from '../pages/Home';
-import Swal from 'sweetalert2';
 import Loader from './Loader';
 import { Link } from 'react-router-dom';
-import Buttonpay from './Buttonpay';
+import ProductShape from './ProductShape';
 
 export default function Products() {
     const { data, loading } = useRequest({
@@ -17,11 +14,11 @@ export default function Products() {
         method: 'GET'
     });
 
-    //   useEffect(()=>{
-    //     if(data){
-    //         console.log(data);
-    //     }
-    // },[data])
+      useEffect(()=>{
+        if(data){
+            console.log(data);
+        }
+    },[data])
 
     return (
         <>
@@ -36,9 +33,18 @@ export default function Products() {
                                   key={el.id}
                                   className="flex flex-col gap-[20px]  items-end "
                               >
-                                  <h1 className="text-3xl text-gray-800 p-2">
+                                <div className=' pr-2 pl-2 w-full items-end flex justify-between'>
+                                    <Link 
+                                    to={`cutogry/${el.id}`}
+                                    className='text-gray-500 hover:text-blue-500 border-blue-500 hover:border-b-[0.5px]'
+                                    >
+                                    شاهد المزيد 
+                                    </Link>
+                                  <h1 className="text-3xl text-gray-800 ">
                                       {el.name}
                                   </h1>
+
+                                    </div>
                                   <div className="bg-gray-300 w-full h-[1px]"></div>
                                   
                                   <Swiper
@@ -47,56 +53,15 @@ export default function Products() {
                                       autoplay={{ delay: 3000 }}
                                       loop
                                       spaceBetween={0}
-                                      slidesPerView={4}
-                                      className="w-full h-[500px] "
+                                      slidesPerView={5}
+                                      className="w-full  "
                                   >
                                       {el.products &&
                                           el.products.map(el => {
                                               return (
                                                   <SwiperSlide key={el.id}>
                                                       <div className="pl-[40px]">
-                                                          <div
-                                                              className="bg-white
-                                                                justify-between  gap-[10px] 
-                                                              rounded-lg flex  flex-col
-                                                                items-center h-[480px]
-                                                                 w-[260px] p-[10px]"
-                                                          >
-                                                              <img
-                                                                  className="size-[230px] rounded"
-                                                                  src={surve(
-                                                                      `${el.image_1}`
-                                                                  )}
-                                                              />
-                                                              <p
-                                                                  className="text-sm text-gray-500 w-full
-                                                                    font-semibold  text-center"
-                                                              >
-                                                                  {el.name}
-                                                              </p>
-                                                              <p
-                                                                  className="text-sm text-gray-500 w-full
-                                                                    font-semibold  text-end"
-                                                              >
-                                                                  {el.description}
-                                                              </p>
-                                                              <p className="text-lg text-gray-800 font-bold">
-                                                                  {el.price} <span className='text-sm text-gray-600'> ج.م </span>
-                                                              </p>
-                                                            <Buttonpay
-                                                             number = {230}
-                                                             key={el.id}
-                                                              props = {el}/>
-                                                              <Link
-                                                                to={`/${el.id}`}
-                                                                  className="flex justify-center
-                                                                  items-center text-sm cursor-pointer
-                                                                  bg-blue-500 text-white p-[10px]
-                                                                    rounded-lg w-[230px] shadow-lg"
-                                                              >
-                                                                    شاهد تفاصيل المنتج 
-                                                              </Link>
-                                                          </div>
+                                                          <ProductShape props = {el}/>
                                                       </div>
                                                   </SwiperSlide>
                                               );

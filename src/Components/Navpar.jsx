@@ -253,7 +253,7 @@ export default function Navpar() {
       }}
       className={`absolute flex 
       flex-wrap p-[20px]
-      gap-[20px]  w-[500px] 
+      gap-[20px] z-[10] w-[500px] 
        bg-white shadow top-[45px]
         left-0
         ${Bool?'block':'hidden'}

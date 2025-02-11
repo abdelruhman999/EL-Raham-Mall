@@ -23,7 +23,7 @@ export default function Buttonpay({props,number,height,font}) {
         }}
         className="flex justify-center
         items-center gap-5 text-sm cursor-pointer
-        bg-green-500  text-white p-[10px]
+        bg-green-500 hover:bg-black duration-200  text-white p-[10px]
         rounded-lg shadow-lg"
         style = 
         {{
