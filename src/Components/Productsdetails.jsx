@@ -26,7 +26,7 @@ export default function Productsdetails() {
 
       console.log(data);
       data.map((el)=>{
-        setcurrentimg(el.image_1)
+        setcurrentimg(`${surve(el.image_1)}`)
       })
     }
   },[data])
@@ -51,23 +51,23 @@ export default function Productsdetails() {
          <div className='flex gap-[20px]'>
          <img
          onClick={()=>{
-           setcurrentimg(el.image_1)
+           setcurrentimg(`${surve(el.image_1)}`)
            henddeleactive(0)
          }
          }
-         src={el.image_1} className={`size-[100px] ${active === 0 ? 'border-blue-700': ''} cursor-pointer border p-[10px]`} />
+         src={`${surve(el.image_1)}`} className={`size-[100px] ${active === 0 ? 'border-blue-700': ''} cursor-pointer border p-[10px]`} />
          <img
          onClick={()=>{
            henddeleactive(1)
-           setcurrentimg(el.image_2)}
+           setcurrentimg(`${surve(el.image_2)}`)}
          }
-         src={el.image_2} className={`size-[100px] ${active === 1 ? 'border-blue-700': ''} cursor-pointer border p-[10px]`} />
+         src={`${surve(el.image_2)}`} className={`size-[100px] ${active === 1 ? 'border-blue-700': ''} cursor-pointer border p-[10px]`} />
          <img
          onClick={()=>{
            henddeleactive(2)
-           setcurrentimg(el.image_3)}
+           setcurrentimg(`${surve(el.image_3)}`)}
          }
-         src={el.image_3} className={`size-[100px] ${active === 2 ? 'border-blue-700': ''} cursor-pointer border p-[10px]`} />
+         src={`${surve(el.image_3)}`} className={`size-[100px] ${active === 2 ? 'border-blue-700': ''} cursor-pointer border p-[10px]`} />
          </div>
  
          </div>
@@ -77,7 +77,7 @@ export default function Productsdetails() {
          <div className='flex  gap-[50px]'>
          
            < div className='flex  items-start flex-col gap-[20px]'>
-             <img src={el.brand.image} alt="logo prand" />
+             <img src={`${surve(el.brand.image)}`} className='w-[120px]' alt="logo prand" />
              <p className='text-xl text-blue-600 font-semibold'>
                
               {el.price} <span className='text-sm text-gray-600'> ج.م </span>
@@ -88,7 +88,7 @@ export default function Productsdetails() {
               hover:border-b-[0.5px] 
                border-blue-600 text-gray-500 text-sm text-nowrap duration-200'
              >
-           <span className='text-blue-600 '>{el.brand.name}</span>  | شاهد المزيد من  <span className='text-blue-600'>{el.categories[0].name} </span>   
+               شاهد المزيد من  <span className='text-blue-600'>{el.categories[0].name} </span> |  <span className='text-blue-600 '>{el.brand.name}</span>
             </Link>
           
            </div>

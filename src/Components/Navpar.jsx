@@ -7,20 +7,11 @@ import {datacontext, totalcontext} from '../pages/Home'
 import { FaListUl } from "react-icons/fa";
 import { BiSolidOffer } from "react-icons/bi";
 import { IoIosArrowDown } from "react-icons/io";
-import ALBA from '../assets/image/ALBA.webp'
-import CANDY from '../assets/image/CANDY.webp'
-import FastForward from '../assets/image/FastForward.webp'
-import Grandseiko from '../assets/image/Grandseiko.webp'
-import Hionelogo from '../assets/image/Hionelogo.webp'
-import SharpLogo from '../assets/image/SharpLogo.webp'
-import Sonylogo from '../assets/image/Sonylogo.webp'
-import tigerlogo from '../assets/image/tigerlogo.webp'
-import ToshibaLogo from '../assets/image/ToshibaLogo.webp'
-import Hellenlogo from '../assets/image/Hellenlogo.webp'
-import TORNADOLogo from '../assets/image/TORNADOLogo.webp'
 import { IoMdArrowDropleft } from "react-icons/io";
 import { FiX } from "react-icons/fi";
 import 'animate.css';
+import useRequest from '../hooks/call';
+import { surve } from '../utils/surve';
 
 
 export default function Navpar() {
@@ -29,6 +20,11 @@ export default function Navpar() {
   const [Correct , setCorrect] =useState(false)
   const {data1}=useContext(datacontext)
   const {total,settotal} = useContext(totalcontext)
+
+  const {data} = useRequest({
+    url:'/api/v1/brands',
+    method:'GET'
+  })
 
    useEffect(()=>{
         if(data1){
@@ -41,6 +37,12 @@ export default function Navpar() {
           }))
         }
       },[data1])
+
+   useEffect(()=>{
+        if(data){
+          console.log(data);    
+        }
+      },[data])
 
 
   return (
@@ -255,42 +257,23 @@ export default function Navpar() {
       flex-wrap p-[20px]
       gap-[20px] z-[10] w-[500px] 
        bg-white shadow top-[45px]
-        left-0
-        ${Bool?'block':'hidden'}
-        `}>
-        <Link>
-          <img src={ALBA} className='w-[100px]' />
-        </Link>
-        <Link>
-          <img src={FastForward} className='w-[100px]' />
-        </Link>
-        <Link>
-          <img src={Grandseiko} className='w-[100px]' />
-        </Link>
-        <Link>
-          <img src={Hionelogo} className='w-[100px]' />
-        </Link>
-        <Link>
-          <img src={SharpLogo} className='w-[100px]' />
-        </Link>
-        <Link>
-          <img src={Sonylogo} className='w-[100px]' />
-        </Link>
-        <Link>
-          <img src={tigerlogo} className='w-[100px]' />
-        </Link>
-        <Link>
-          <img src={ToshibaLogo} className='w-[100px]' />
-        </Link>
-        <Link>
-          <img src={Hellenlogo} className='w-[100px]' />
-        </Link>
-        <Link>
-          <img src={TORNADOLogo} className='w-[100px]' />
-        </Link>
-        <Link>
-          <img src={CANDY} className='w-[100px]' />
-        </Link>
+        left-0 duration-200
+        ${Bool?'scale-100 opacity-100':'scale-0 opacity-0'}
+        `}
+        >
+          {
+            data&&
+            data.map((el)=>{
+            return(
+              <Link
+              to={`prand/${el.id}`}
+              key={el.id}>
+                <img src={`${surve(el.image)}`} className='w-[100px]' />
+              </Link>
+            )
+              
+            })
+          }
       </div>
      
       </div>

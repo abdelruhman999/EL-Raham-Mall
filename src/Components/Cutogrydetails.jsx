@@ -5,6 +5,7 @@ import ProductShape from './ProductShape';
 import PriceFilter from './PriceFilter ';
 import Loader from './Loader';
 import { maxcontext } from '../pages/Home';
+import Cheakboxfilter from './Cheakboxfilter';
 
 export default function Cutogrydetails() {
   const {maxandmin} = useContext(maxcontext)
@@ -21,21 +22,31 @@ export default function Cutogrydetails() {
       loading ?
       <Loader/>
     :
-
     <div className='flex p-[10px] justify-between gap-[10px]'>
+      <div className='flex flex-col gap-[10px]'>
+      <div className='bg-white
+      h-fit rounded items-end flex flex-col
+      p-[20px] gap-[30px]'>
+          <p className='text-3xl text-gray-600 '>
+           : اختر البراند 
+          </p>
+        <Cheakboxfilter/>
+      </div>
      <div className='bg-white
       h-fit rounded items-end flex flex-col
       p-[20px] gap-[30px]'>
-          <p className='text-4xl text-gray-600 '>
+          <p className='text-3xl text-gray-600 '>
            : سعر المنتج
           </p>
           <PriceFilter/>
       </div>
+    
+      
+      </div>
 
       <div className=' gap-[10px] flex-wrap justify-start  w-full  flex'>
 
-        {
-       
+        {   
        maxandmin &&
        maxandmin.map((el,index) => {
               return ( 

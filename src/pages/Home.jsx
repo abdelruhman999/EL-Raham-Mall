@@ -8,6 +8,7 @@ import ShoppingBage from '../Components/ShoppingBage';
 import Products from '../Components/Products';
 import Productsdetails from '../Components/Productsdetails';
 import Cutogrydetails from '../Components/Cutogrydetails';
+import Branddetails from '../Components/Branddetails';
 
 
 export const datacontext = createContext()
@@ -47,6 +48,7 @@ export default function Home() {
           <Route path='/ShoppingBage' element = {<ShoppingBage/>}/>
           <Route path='/:id' element = {<Productsdetails/>}/>
           <Route path='cutogry/:id' element = {<Cutogrydetails/>}/>
+          <Route path='prand/:id' element = {<Branddetails/>}/>
         </Routes>
        
 

@@ -10,10 +10,14 @@ import logo7 from '../assets/image/master-card.svg'
 import logo11 from '../assets/image/visa-en.svg'
 import List from './List';
 import { Link } from 'react-router-dom';
+import useRequest from '../hooks/call';
 
 export default function Navigation() {
+  const {data} = useRequest({
+    url:'/api/v1/brands',
+    method:'GET'
+  })
   return (
-   
     <div className='bg-gray-900 flex
     gap-[20px] flex-col items-center pt-[80px] pr-[80px] pl-[80px]'>
     <div className='
@@ -46,30 +50,28 @@ export default function Navigation() {
      ]}
      />
 
-     <List
-     header = 'جميع الموديلات '
-     texts={[
-        'توشيبا',
-        'تورنيدو',
-        'شارب',
-        'سوني',
-        'البا',
-       
+        <div className='flex flex-col items-end gap-[20px]'>
+         <h1 className='text-xl text-white'>جميع البراندات</h1>
+         <div className='flex flex-col text-gray-400 gap-[10px] items-end'>
+           
+           {data&&
+            data.map((el)=>{
+               return(
+                 <Link 
+                     to={`prand/${el.id}`}
+                     key={el.id}
+                     >
+                       {el.name}
+                 </Link>
+               )
+           })
+           }
+           
         
-     ]} 
-     />
-     <List
-     texts={[
-        'كاندي  ' ,
-        'تايجر',
-        'هيلير',
-        'فاست فورورد',
-        'هوون بلس',
-        'جي سي'
-        
-     ]}
+         </div>
+      </div>
 
-     />
+     
 
     <div className='flex  items-center gap-[30px] 
         justify-end w-[280px] '>
