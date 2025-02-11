@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import useRequest from "../hooks/call";
 import { maxcontext } from "../pages/Home";
 
+
+// {npm install react-range}   نزل المكتبه ديه ي اتش 
 const PriceFilter = () => {
   const { id } = useParams();
   const [min, setMin] = useState(0);
