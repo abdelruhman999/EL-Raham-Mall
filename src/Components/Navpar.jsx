@@ -25,24 +25,23 @@ export default function Navpar() {
     url:'/api/v1/brands',
     method:'GET'
   })
+  const {data:catogryname} = useRequest({
+    url:'/api/v1/categories',
+    method:'GET'
+  })
 
    useEffect(()=>{
         if(data1){
-
-          console.log(data1); 
-          data1.map((el=>{
-            console.log(typeof( el.price));
             const total = data1.reduce((sum,el)=> sum + el.price ,0)
             settotal(total);     
-          }))
         }
-      },[data1])
+      },[data1,total])
 
    useEffect(()=>{
-        if(data){
-          console.log(data);    
+        if(catogryname){
+          console.log(catogryname);
         }
-      },[data])
+      },[catogryname])
 
 
   return (
@@ -59,9 +58,9 @@ export default function Navpar() {
       </div>
       <div className='flex flex-row-reverse
        text-xs items-center gap-[20px] pl-[100px] font-semibold'>
-          <Link>
+          <p>
           اتصل بنا 
-          </Link>
+          </p>
         <div className='bg-gray-400 w-[0.5px] opacity-50 h-[12px]'></div>
         <p>01102840567</p>
        
@@ -121,8 +120,7 @@ export default function Navpar() {
       </div>
       </div> 
       <div className=' relative bg-white
-       shadow 
-       flex 
+       shadow flex 
        justify-center
        '>
         <ul className='flex
@@ -131,16 +129,16 @@ export default function Navpar() {
          gap-[70px]  items-center
          font-bold '
          >
-
           <li className='relative p-2
            bg-opacity-50 bg-blue-400'>
-            <Link
+            <div
+            
             onClick={()=>{
               setCorrect(!Correct)
             }}
             className="flex w-[320px]
               justify-end items-center
-               gap-2"
+               gap-2 cursor-pointer"
                > 
             جميع الاقسام  
             <div className={`duration-500 ${Correct?'rotate-90':''}`}>
@@ -151,86 +149,38 @@ export default function Navpar() {
               )
             }
             </div>
-            </Link>
-             <ul  className={`absolute text-black 
+            </div>
+             <ul 
+              className={`absolute text-black 
               ${Correct?'block':'hidden'}  left-0 top-[43px] p-[10px]
               bg-white shadow z-10`}>
-                <li className='flex items-center
-                 justify-between w-[317px] 
-                 p-[10px] cursor-pointer
-                 '>
-                  <IoMdArrowDropleft />
-                   تليفونات والكترونيات 
-                </li>
-                <div className='bg-gray-200   h-[1px]'></div>
-                <li className='flex items-center
-                 justify-between w-[317px] 
-                 p-[10px] cursor-pointer
-                 '>
-                  <IoMdArrowDropleft />
-                   الاجهزة المنزليه 
-                </li>
-                <div className='bg-gray-200 w-full h-[1px]'></div>
-                <li className='flex items-center
-                 justify-between w-[317px] 
-                 p-[10px] cursor-pointer
-                 '>
-                  <IoMdArrowDropleft />
-                  تكييفات و منقيات الهواء
-                </li>
-                <div className='bg-gray-200   h-[1px]'></div>
-                <li className='flex items-center
-                 justify-between w-[317px] 
-                 p-[10px] cursor-pointer
-                 '>
-                  <IoMdArrowDropleft />
-                   منتجات الصحه والعنايه الشخصيه
-                </li>
-                <div className='bg-gray-200 w-full h-[1px]'></div>
-                <li className='flex items-center
-                 justify-between w-[317px] 
-                 p-[10px] cursor-pointer
-                 '>
-                  <IoMdArrowDropleft />
-                   قطع غيار استهلاكيه
-                </li>
-                <div className='bg-gray-200   h-[1px]'></div>
-                <li className='flex items-center
-                 justify-between w-[317px] 
-                 p-[10px] cursor-pointer
-                 '>
-                  <IoMdArrowDropleft />
-                   منتجات حصريه
-                </li>
-                <div className='bg-gray-200 w-full h-[1px]'></div>
-                <li className='flex items-center
-                 justify-end w-[px] 
-                 p-[10px] cursor-pointer
-                 '>
-                    عروض وخصومات 
-                </li>
-                <div className='bg-gray-200 w-full h-[1px]'></div>
-                <li className='flex items-center
-                 justify-between w-[317px] 
-                 p-[10px] cursor-pointer
-                 '>
-                  <IoMdArrowDropleft />
-                  الاكثر مبيعا 
-                </li>
-                <div className='bg-gray-200 w-full h-[1px]'></div>
-                <li className='flex items-center
-                 justify-between w-[317px] 
-                 p-[10px] cursor-pointer
-                 '>
-                  <IoMdArrowDropleft />
-                   ماركت الرحمه  
-                </li>
+                { catogryname&&
+                  catogryname.map((el)=>{
+                    return(
+                      <div key={el.id}>
+                      <Link
+                      to={`cutogry/${el.id}`}
+                       className='flex items-center
+                      justify-between w-[317px] 
+                      p-[10px] cursor-pointer
+                      '>
+                        <IoMdArrowDropleft />
+                           {el.name}
+                      </Link>
+                        <div className='bg-gray-200 h-[1px]'></div>
+                      </div>
+                    )
+                  })
+                }
+               
             </ul>
           </li>
 
 
           <li>
-            <Link className='flex items-center gap-2'>
+            <Link
+            to={"sale"}
+            className='flex items-center gap-2'>
             عروض وخصومات
             <BiSolidOffer className='text-blue-400 text-xl'/>
             </Link>

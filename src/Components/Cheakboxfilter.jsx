@@ -5,11 +5,12 @@ import { maxcontext } from '../pages/Home';
 
 export default function Cheakboxfilter() {
     const {setmaxandmin} = useContext(maxcontext)
+    const [product,setproduct] = useState([])
     const [active,setactive] = useState("all")
     const { id } = useParams();
 
     const {data:productsData } = useRequest({
-        url:`/api/v1/products?category=${id}`,
+        url:`/api/v1/products`,
         method:'GET'
     })
 
@@ -18,14 +19,18 @@ export default function Cheakboxfilter() {
         method:'GET'
     })
 
+   useEffect(()=>{
+    if(productsData){
+        setproduct(productsData.filter((el)=>el.categories[0].id == id))
+    }
+   },[productsData,id])
 
     function henddeleclick(index,name){
         setactive(index)   
        if(index === "all"){
-        setmaxandmin(productsData)
+        setmaxandmin(product)
        }else{
-
-           setmaxandmin(productsData.filter((el)=>el.brand.name == name))
+        setmaxandmin(product.filter((el)=>el.brand.name == name))
        }
     }
   

@@ -13,28 +13,33 @@ const PriceFilter = () => {
   const [values, setValues] = useState([0, 100]);
   const {setmaxandmin} = useContext(maxcontext)
 
-  const { data } = useRequest({
-    url: `/api/v1/products?category=${id}`,
-    method: "GET",
-  });
+ 
+
+  const {data} = useRequest({
+    url:`/api/v1/products`,
+    method:'GET'
+})
 
   useEffect(() => {
     if (data?.length) {
-      const minVal = Math.min(...data.map((el) => el.price));
-      const maxVal = Math.max(...data.map((el) => el.price));   
+      const minVal = Math.min(...data.filter((el)=>el.categories[0].id == id).map((el) => el.price));
+      const maxVal = Math.max(...data.filter((el)=>el.categories[0].id == id).map((el) => el.price));   
       setMin(minVal);
       setMax(maxVal);
       setValues([minVal, maxVal]);   
     }
-  }, [data]);
+  }, [data,id]);
 
   useEffect(() => {
     if (data?.length) {
-    const gretter = data.filter((el)=> el.price >= values[0] && el.price <= values[1])
+     const productdata= data.filter((el)=>el.categories[0].id == id)
+    const gretter = productdata.filter((el)=> el.price >= values[0] && el.price <= values[1])
     // console.log(gretter);
     setmaxandmin(gretter)
+    // console.log(gretter);
+    
     }
-  }, [values,data]);
+  }, [values,data,id]);
 
   return (
     <div className="flex flex-col items-center gap-[10px]">

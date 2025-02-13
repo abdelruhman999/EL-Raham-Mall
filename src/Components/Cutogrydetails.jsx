@@ -8,14 +8,20 @@ import { maxcontext } from '../pages/Home';
 import Cheakboxfilter from './Cheakboxfilter';
 
 export default function Cutogrydetails() {
-  const {maxandmin} = useContext(maxcontext)
+  const {maxandmin,setmaxandmin} = useContext(maxcontext)
     const {id} = useParams()
 
-    const {loading} = useRequest({
-        url:`/api/v1/products?category=${id}`,
+   
+    const {data:productdetails,loading} = useRequest({
+        url:`/api/v1/products`,
         method:'GET'
     })
-
+    useEffect(()=>{
+      if(productdetails){
+        setmaxandmin(productdetails.filter((el)=>el.categories[0].id == id)) 
+      }
+    },[productdetails,id])
+  
   return (
     <>
     {
@@ -48,10 +54,10 @@ export default function Cutogrydetails() {
 
         {   
        maxandmin &&
-       maxandmin.map((el,index) => {
+       maxandmin.map((el) => {
               return ( 
-                    <ProductShape key={index}  props = {el}/>       
-              );
+                    <ProductShape key={el.id}  props = {el}/>       
+                   );
           })
         }
       </div>

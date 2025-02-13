@@ -7,6 +7,7 @@ import 'swiper/css/navigation';
 import Loader from './Loader';
 import { Link } from 'react-router-dom';
 import ProductShape from './ProductShape';
+import ImageSlider from './ImageSlider';
 
 export default function Products() {
     const { data, loading } = useRequest({
@@ -16,12 +17,15 @@ export default function Products() {
 
       useEffect(()=>{
         if(data){
-            console.log(data);
+            console.log(data); 
         }
     },[data])
 
     return (
-        <>
+        <div className='flex flex-col items-center gap-[50px]'>
+            <div className=' p-[50px] flex w-full justify-center'>
+                <ImageSlider />
+            </div>
             {
                 loading ?
                  <Loader/> 
@@ -31,7 +35,7 @@ export default function Products() {
                           return (
                               <div
                                   key={el.id}
-                                  className="flex flex-col gap-[20px]  items-end "
+                                  className="flex flex-col w-full  gap-[20px]  items-end "
                               >
                                 <div className=' pr-2 pl-2 w-full items-end flex justify-between'>
                                     <Link 
@@ -71,6 +75,6 @@ export default function Products() {
                           );
                   })
              }
-        </>
+        </div>
     );
 }

@@ -9,6 +9,7 @@ import Products from '../Components/Products';
 import Productsdetails from '../Components/Productsdetails';
 import Cutogrydetails from '../Components/Cutogrydetails';
 import Branddetails from '../Components/Branddetails';
+import Saledetails from '../Components/Saledetails';
 
 
 export const datacontext = createContext()
@@ -39,7 +40,7 @@ export default function Home() {
       <datacontext.Provider value={{ data1,setdata1 }}>
       <totalcontext.Provider value={{ total,settotal }}>
       <maxcontext.Provider value={{ maxandmin,setmaxandmin}}>
-        <div className='flex flex-col  gap-[100px]'>
+        <div className='flex flex-col  gap-[20px]'>
         <Navpar/>
         <Routes>
           <Route path='/login' element = {<Login/>}/>
@@ -49,6 +50,7 @@ export default function Home() {
           <Route path='/:id' element = {<Productsdetails/>}/>
           <Route path='cutogry/:id' element = {<Cutogrydetails/>}/>
           <Route path='prand/:id' element = {<Branddetails/>}/>
+          <Route path='sale' element = {<Saledetails/>}/>
         </Routes>
        
 

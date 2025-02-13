@@ -42,7 +42,7 @@ export default function ProductShape({props}) {
         <p className='text-gray-600'> 
         متاح ({props.count}) قطعه
         </p>
-        <p className="text-lg text-gray-800 font-bold">
+        <p className="text-lg  text-blue-800 font-bold">
             {props.price} <span className='text-sm text-gray-600'> ج.م </span>
         </p>  
        

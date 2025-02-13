@@ -1,7 +1,7 @@
 import { BASE_URL  , AUTH_KEY} from "../utils/constants";
 import Swal from "sweetalert2";
 
-export const sendRequest = ({ url, method, params, data, headers, reloadWhenUnauthorized = true }) => {
+export const sendRequest = ({ url, method, params, data, headers = true }) => {
     return fetch(`${BASE_URL}${url}${params ? "?" + new URLSearchParams(params).toString() : ""}`, {
         method: method,
         body: data,
@@ -13,7 +13,7 @@ export const sendRequest = ({ url, method, params, data, headers, reloadWhenUnau
     }).then(response => {
         if (response.status === 200) {
             return response.json();
-        } else if (response.status === 401 && reloadWhenUnauthorized) {
+        } else if (response.status === 401) {
             localStorage.removeItem(AUTH_KEY);
             Swal.fire({
                 icon: "error",

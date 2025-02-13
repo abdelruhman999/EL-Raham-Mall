@@ -5,6 +5,7 @@ import Googlecurd from './Googlecurd';
 import Swal from 'sweetalert2';
 import { sendRequest } from '../calls/request';
 import { surve } from '../utils/surve';
+import useRequest from '../hooks/call';
 
 
 export default function Login() {
@@ -21,7 +22,8 @@ export default function Login() {
       Swal.fire("يرجى ملئ جميع الحقول")
       return
     } 
-  
+   
+    
        await sendRequest({
         url:"/api/v1/login/",
         method:"POST",
@@ -30,19 +32,18 @@ export default function Login() {
            password: Security,
         }
       })
-      .then(response => {
-        if(response.status === 200 ){
-          const tocken = response.data
-          localStorage.setItem("tocken",tocken)
+      .then(data => {
+        console.log(data);
+        
+          localStorage.setItem("token",JSON.stringify(data))
           Swal.fire("تم التسجيل بنجاح")
+
           navigate('/');
-        }
+        
       }).catch(error=>{
-        if(error.response){
-          setMessage("حدث خطا في الاتصال")
-        }else{
-          setMessage(`حدث خطأ ${error.message}`)
-        }
+       
+          setMessage(`حدث خطأ ${error.detail}`)
+        
       })
     
       
