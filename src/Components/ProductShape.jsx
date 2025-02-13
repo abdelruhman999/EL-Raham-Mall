@@ -50,12 +50,13 @@ export default function ProductShape({props}) {
         
         <div className={`absolute inset-0 flex flex-col duration-200 rounded ${show ? 'opacity-100 scale-100' :'opacity-0 scale-0'} justify-end items-center p-[20px] gap-[20px] bg-gray-400 bg-opacity-50`}>
              <Buttonpay
-        number = {190}
-        key={props.id}
-        props = {props}
-        />
+                number = {190}
+                key={props.id}
+                props = {props}
+                />
         <Link
         to={`/${props.id}`}
+        onClick={()=>{window.scrollTo(0,0)}}
             className="flex justify-center
             items-center text-sm cursor-pointer
             bg-blue-500 hover:bg-black duration-200 

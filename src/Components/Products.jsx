@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import useRequest from '../hooks/call';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
@@ -8,16 +8,20 @@ import Loader from './Loader';
 import { Link } from 'react-router-dom';
 import ProductShape from './ProductShape';
 import ImageSlider from './ImageSlider';
+import Slidabrand from './Slidabrand';
 
 export default function Products() {
     const { data, loading } = useRequest({
         url: '/api/v1/home-products',
         method: 'GET'
     });
+   
 
       useEffect(()=>{
         if(data){
             console.log(data); 
+           
+            
         }
     },[data])
 
@@ -75,6 +79,7 @@ export default function Products() {
                           );
                   })
              }
+              <Slidabrand/>
         </div>
     );
 }
