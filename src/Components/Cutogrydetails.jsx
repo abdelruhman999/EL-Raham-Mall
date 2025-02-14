@@ -14,13 +14,15 @@ export default function Cutogrydetails() {
    
     const {data:productdetails,loading} = useRequest({
         url:`/api/v1/products`,
-        method:'GET'
-    })
+        method:'GET',
+        params:{category:id}
+
+    },[id])
     useEffect(()=>{
       if(productdetails){
-        setmaxandmin(productdetails.filter((el)=>el.categories[0].id == id)) 
+        setmaxandmin(productdetails) 
       }
-    },[productdetails,id])
+    },[productdetails])
   
   return (
     <>

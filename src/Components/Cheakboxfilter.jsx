@@ -11,8 +11,9 @@ export default function Cheakboxfilter() {
 
     const {data:productsData } = useRequest({
         url:`/api/v1/products`,
-        method:'GET'
-    })
+        method:'GET',
+        params:{category:id}
+    },[id])
 
     const {data:brandsData } = useRequest({
         url:`/api/v1/brands`,
@@ -21,9 +22,9 @@ export default function Cheakboxfilter() {
 
    useEffect(()=>{
     if(productsData){
-        setproduct(productsData.filter((el)=>el.categories[0].id == id))
+        setproduct(productsData)
     }
-   },[productsData,id])
+   },[productsData])
 
     function henddeleclick(index,name){
         setactive(index)   

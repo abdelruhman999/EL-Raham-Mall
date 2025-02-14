@@ -17,8 +17,9 @@ const PriceFilter = () => {
 
   const {data} = useRequest({
     url:`/api/v1/products`,
-    method:'GET'
-})
+    method:'GET',
+    params:{category:id}
+},[id])
 
   useEffect(() => {
     if (data?.length) {
@@ -32,14 +33,14 @@ const PriceFilter = () => {
 
   useEffect(() => {
     if (data?.length) {
-     const productdata= data.filter((el)=>el.categories[0].id == id)
-    const gretter = productdata.filter((el)=> el.price >= values[0] && el.price <= values[1])
+    
+    const gretter = data.filter((el)=> el.price >= values[0] && el.price <= values[1])
     // console.log(gretter);
     setmaxandmin(gretter)
     // console.log(gretter);
     
     }
-  }, [values,data,id]);
+  }, [values,data]);
 
   return (
     <div className="flex flex-col items-center gap-[10px]">

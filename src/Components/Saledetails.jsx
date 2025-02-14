@@ -12,8 +12,11 @@ export default function Saledetails() {
     })
     useEffect(()=>{
         if(data){
+           
             
-            setproduct(data.filter((el)=> el.categories[0].is_sale == true));
+            setproduct(data.filter((el)=> el.categories.map((el)=>{
+             el.is_sale == true
+            })));
             
         }
     },[data])
