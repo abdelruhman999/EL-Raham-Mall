@@ -73,7 +73,8 @@ export default function Products() {
                                                       </div>
                                                   </SwiperSlide>
                                               );
-                                          })}
+                                          })
+                                          }
                                   </Swiper>
                               </div>
                           );

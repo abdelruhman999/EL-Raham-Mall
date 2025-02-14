@@ -3,7 +3,7 @@ import { FaSearch } from "react-icons/fa";
 import { GoPerson } from "react-icons/go";
 import { Link } from 'react-router-dom'
 import { CiShoppingCart } from "react-icons/ci";
-import {datacontext, totalcontext} from '../pages/Home'
+import {datacontext, totalcontext, valuecontext} from '../pages/Home'
 import { FaListUl } from "react-icons/fa";
 import { BiSolidOffer } from "react-icons/bi";
 import { IoIosArrowDown } from "react-icons/io";
@@ -12,6 +12,7 @@ import { FiX } from "react-icons/fi";
 import 'animate.css';
 import useRequest from '../hooks/call';
 import { surve } from '../utils/surve';
+import Searchresult from './Searchresult';
 
 
 export default function Navpar() {
@@ -20,6 +21,7 @@ export default function Navpar() {
   const [Correct , setCorrect] =useState(false)
   const {data1}=useContext(datacontext)
   const {total,settotal} = useContext(totalcontext)
+  const {value , setvalue} = useContext(valuecontext)
 
   const {data} = useRequest({
     url:'/api/v1/brands',
@@ -76,11 +78,19 @@ export default function Navpar() {
       </div>
       <div className='relative'>
       <input
+      onChange={(e)=>{
+        setvalue(e.target.value)
+      }}
       className='w-[350px] 
       text-sm text-right pr-1 h-[37px] rounded outline-none '
        type="search" 
        placeholder="...ابحث فى المتجر بالكامل هنا"/>
        <FaSearch className='absolute text-xl top-2 text-blue-700 left-4' />
+       {value&&
+       <div className='absolute z-20 p-[10px] bg-white rounded w-full'>
+        <Searchresult/>
+       </div>
+        }
       </div>
     </div>
 

@@ -18,6 +18,8 @@ export default function Navigation() {
     method:'GET'
   })
   return (
+    <div className='pt-[100px]'>
+
     <div className='bg-gray-900 flex
     gap-[20px] flex-col items-center pt-[80px] pr-[80px] pl-[80px]'>
     <div className='
@@ -100,6 +102,7 @@ export default function Navigation() {
     </div>
 
     <p className='text-white '>الرحمه جروب 2024 © جميع الحقوق محفوظة</p>
+    </div>
     </div>
 
   

@@ -15,13 +15,15 @@ import Saledetails from '../Components/Saledetails';
 export const datacontext = createContext()
 export const totalcontext = createContext()
 export const maxcontext = createContext()
+export const valuecontext = createContext()
 
 
 export default function Home() {
 
   const [data1, setdata1] = useState([]);
   const [total,settotal] = useState(0)
-   const [maxandmin,setmaxandmin] = useState([])
+  const [value , setvalue] = useState()
+  const [maxandmin,setmaxandmin] = useState([])
   // const [min,setmin] = useState()
   
   // useEffect(() => {
@@ -40,6 +42,7 @@ export default function Home() {
       <datacontext.Provider value={{ data1,setdata1 }}>
       <totalcontext.Provider value={{ total,settotal }}>
       <maxcontext.Provider value={{ maxandmin,setmaxandmin}}>
+      <valuecontext.Provider value={{ value , setvalue}}>
         <div className='flex flex-col  gap-[20px]'>
         <Navpar/>
         <Routes>
@@ -56,6 +59,7 @@ export default function Home() {
 
         <Navigation/>
         </div>
+      </valuecontext.Provider>
       </maxcontext.Provider>
       </totalcontext.Provider>
       </datacontext.Provider>

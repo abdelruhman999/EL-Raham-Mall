@@ -18,6 +18,8 @@ export default function Slidabrand() {
   }, [branddata]);
 
   return (
+    <div className='pt-[100px] w-full'>
+
     <div className=' w-full p-2 bg-white'>
       {branddata && (
         <Swiper
@@ -38,6 +40,7 @@ export default function Slidabrand() {
           ))}
         </Swiper>
       )}
+    </div>
     </div>
   );
 }
