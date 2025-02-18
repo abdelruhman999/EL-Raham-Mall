@@ -71,10 +71,13 @@ export default function Productsdetails() {
          </div>
  
          </div>
-         <div className='flex items-center  flex-col gap-[50px]'>
+         <div className='flex items-center  flex-col gap-[100px]'>
  
-          <h1 className='text-2xl font-semibold '>{el.name} </h1>
-         <div className='flex  gap-[50px]'>
+          <h1 className='text-2xl font-semibold  text-center'>{el.name} </h1>
+
+          <div className='flex flex-col  gap-[50px]'>
+
+         <div className='flex  w-full justify-between gap-[50px]'>
          
            < div className='flex  items-start flex-col gap-[20px]'>
              <img src={`${surve(el.brand.image)}`} className='w-[120px]' alt="logo prand" />
@@ -118,6 +121,7 @@ export default function Productsdetails() {
            </div>
            <div className='bg-gray-300 w-full h-[0.2px]'></div>
  
+          </div>
            <Buttonpay
            font={18}
             number = {500}

@@ -8,7 +8,7 @@ export const sendRequest = ({ url, method, params, data, headers = true }) => {
         credentials: 'include', // include cookies in the request
         headers: {
             ...headers,
-            'Authorization': localStorage.getItem(AUTH_KEY)?.Authorization,
+            'Authorization': localStorage.getItem(AUTH_KEY),
         }
     }).then(response => {
         if (response.status === 200) {

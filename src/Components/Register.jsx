@@ -43,8 +43,8 @@ export default function Register() {
             password: Firstsecurity,
         }
         })
-        .then(response => {
-            console.log(response);
+        .then(data => {
+            console.log(data);
             
         })
         .catch(error=>{

@@ -22,7 +22,7 @@ export default function ShoppingBage() {
   
   
   return (
-    <div className=' flex flex-col items-center'>
+    <div className=' flex flex-col     h-screen justify-center items-center'>
       {
       (data1.length === 0)?
        <div className='flex flex-col gap-[20px] items-center'>
@@ -88,7 +88,8 @@ export default function ShoppingBage() {
                       </tbody>
                     </table>
 
-                      <div className='w-[30%] h-[450px] flex gap-[20px] flex-col items-center
+                      <div className='w-[30%] h-[450px] flex gap-[20px]
+                       flex-col items-center
                       rounded-lg  bg-gray-300'>
                        <p className='text-xl w-full p-[10px] text-center'>
                         قيمة الفاتوره 
@@ -124,7 +125,7 @@ export default function ShoppingBage() {
                         <Link 
                         to={'/'}
                         className='flex items-center justify-center  bg-green-500
-                        text-white rounded-lg w-[300px] p-[12px] cursor-pointer
+                        text-white rounded-lg w-[90%]  p-[12px] cursor-pointer
                         text-sm font-semibold duration-200 hover:bg-blue-600'>
                              تاكيد الطلب
                         </Link>
