@@ -94,15 +94,15 @@ export default function Navigation() {
 
     </div>
     <div className='flex w-full xs:flex-wrap justify-between'>
-    <img src={logo3} className='size-[100px]' />
-    <img src={logo4} className='size-[100px]' />
-    <img src={logo5} className='size-[100px]' />
-    <img src={logo7} className='size-[100px]' />
-    <img src={logo10} className='size-[100px]' />
-    <img src={logo11} className='size-[100px]' />
+    <img src={logo3} className='size-[100px] xs:size-[70px]' />
+    <img src={logo4} className='size-[100px] xs:size-[70px]' />
+    <img src={logo5} className='size-[100px] xs:size-[70px]' />
+    <img src={logo7} className='size-[100px] xs:size-[70px]' />
+    <img src={logo10} className='size-[100px] xs:size-[70px]' />
+    <img src={logo11} className='size-[100px] xs:size-[70px]' />
     </div>
 
-    <p className='text-white xs:w-[300px]'>الرحمه جروب 2024 © جميع الحقوق محفوظة</p>
+    <p className='text-white xs:text-xs'>الرحمه جروب 2024 © جميع الحقوق محفوظة</p>
     </div>
     </div>
 

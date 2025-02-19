@@ -55,7 +55,7 @@ export default function Login() {
                     className="bg-white
         shadow-lg shadow-gray-200 
         rounded-lg  flex flex-col gap-[30px]
-        items-end xs:w-full w-[30%] p-[40px] xs:p-[10px] h-[200px]  xs:h-[120px]
+        items-end xs:w-full w-[30%] p-[40px] xs:p-[15px] h-[200px]  xs:h-[120px]
          "
                 >
                     <h1 className="font-bold xs:text-xl text-3xl">عضو جديد</h1>

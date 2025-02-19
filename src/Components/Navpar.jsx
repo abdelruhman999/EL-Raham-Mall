@@ -55,7 +55,7 @@ export default function Navpar() {
       <div className='bg-gray-400 w-[0.5px] opacity-50 h-[12px]'></div>
       </div>
       <div className='flex flex-row-reverse
-       text-xs items-center gap-[20px]
+       text-xs items-center xs:gap-[10px] gap-[20px]
         pl-[100px] font-semibold
         xs:pl-3'>
           <p>

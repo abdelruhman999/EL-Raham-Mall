@@ -18,7 +18,7 @@ export default function ProductShape({props}) {
         justify-between  gap-[10px] 
         rounded-lg flex  flex-col
         items-center relative
-         w-[200px] xs:w-auto h-fit p-[10px]"
+         w-[200px] xs:w-[150px] h-fit p-[10px]"
     >
         <img
             className="size-[190px]  rounded"

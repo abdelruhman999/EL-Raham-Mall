@@ -36,20 +36,24 @@ export default function Register() {
        await sendRequest(
         {
         url:"/api/v1/register/",
-        method:POST,
-        data:{
+        method:'POST',
+        data: JSON.stringify({
             email:Email,
-            phone_number: Phone,
-            password: Firstsecurity,
+            phone_number:Phone,
+            password:Firstsecurity,
+            first_name:Firstname,
+            last_name:Secondname
+        }),
+
+        headers:{
+            'content-type': 'application/json',
         }
+
         })
         .then(data => {
-            console.log(data);
-            
+            console.log(data);  
         })
-        .catch(error=>{
-            console.error("حدث خطأ:", error.response?.data || error.message);
-        })
+      
     }
   return (
     <div className='flex flex-col items-center gap-[20px]'>
@@ -57,7 +61,7 @@ export default function Register() {
         <form
         onSubmit={Hendellsubmited}
         className='bg-white p-[30px] items-end gap-[20px] shadow flex flex-col  rounded-lg'>
-            <h1 className='text-2xl font-semibold'>المعلومات الشخصيه</h1>
+            <h1 className='text-2xl xs:text-xl font-semibold'>المعلومات الشخصيه</h1>
             <div className='flex flex-row-reverse gap-[20px]'>
                 <div className='flex flex-col gap-1 items-end'>
                     <label htmlFor="الإسم الأول">الإسم الأول</label>
@@ -67,7 +71,7 @@ export default function Register() {
                         
                     }}
                     required
-                    className='w-[250px] h-[50px] text-end pr-[10px] rounded-lg outline-none border'
+                    className='w-[250px] xs:w-[125px] h-[50px] text-end pr-[10px] rounded-lg outline-none border'
                     id='الإسم الأول' 
                     type="text" />
                 </div>
@@ -79,7 +83,7 @@ export default function Register() {
                         
                     }}
                     required
-                    className='w-[250px] h-[50px] text-end pr-[10px] rounded-lg outline-none border'
+                    className='w-[250px] xs:w-[125px] h-[50px] text-end pr-[10px] rounded-lg outline-none border'
                      id='اسم العائلة'
                       type="text" />
                 </div>     

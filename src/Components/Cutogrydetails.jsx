@@ -30,9 +30,10 @@ export default function Cutogrydetails() {
       loading ?
       <Loader/>
     :
-    <div className='flex p-[10px] justify-between gap-[10px]'>
+    <div className='flex p-[10px] xs:flex-col  justify-between gap-[10px]'>
+
       <div className='flex flex-col gap-[10px]'>
-      <div className='bg-white
+      <div className='bg-white 
       h-fit rounded items-end flex flex-col
       p-[20px] gap-[30px]'>
           <p className='text-3xl text-gray-600 '>
@@ -52,7 +53,7 @@ export default function Cutogrydetails() {
       
       </div>
 
-      <div className=' gap-[10px] flex-wrap justify-start  w-full  flex'>
+      <div className=' gap-[10px] flex-wrap  xs:justify-center justify-start  w-full  flex'>
 
         {   
        maxandmin &&

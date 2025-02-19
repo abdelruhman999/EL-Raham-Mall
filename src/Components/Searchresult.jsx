@@ -63,8 +63,8 @@ export default function Searchresult() {
         
         <div className={`absolute inset-0 flex flex-col duration-200 rounded ${show === el.id ? 'opacity-100 scale-100' :'opacity-0 scale-0'} justify-end items-center p-[10px] gap-[20px] bg-gray-400 bg-opacity-50`}>
              <Buttonpay
-                font={12}
-                number = {90}
+                font={10}
+                number = {100}
                 height={50}
                 key={el.id}
                 props = {el}

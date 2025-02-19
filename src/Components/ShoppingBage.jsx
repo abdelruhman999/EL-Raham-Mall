@@ -4,7 +4,7 @@ import logo1 from '../assets/image/cart-page.svg'
 import { Link } from 'react-router-dom'
 import { IoMdArrowDropleft } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
-import logo2 from '../assets/image/cart-payment-logos.webp'
+import logo2 from '../assets/image/filtered-payment-logos.png'
 import { surve } from '../utils/surve';
 import Returnhome from './Returnhome';
 import { FiX } from "react-icons/fi";
@@ -24,10 +24,10 @@ export default function ShoppingBage() {
   
   
   return (
-    <div className=' flex flex-col  relative   h-screen justify-center items-center'>
+    <div className=' flex flex-col  relative  justify-center items-center'>
       {
       (data1.length === 0)?
-       <div className='flex flex-col gap-[20px] items-center'>
+       <div className='flex flex-col pt-[50px] justify-center  w-full gap-[20px] items-center'>
         <img src={logo1} /> 
         <p className='font-semibold text-sm'>  عربة التسوق فارغه </p>
         <Link 
@@ -39,14 +39,17 @@ export default function ShoppingBage() {
         </Link>
         </div> 
         :(
-            <div className=' pr-[150px] pl-[150px] gap-[30px] w-full flex flex-col  items-center'>
-              < Returnhome text="سله التسوق "/>
+            <div className=' pr-[150px] xs:pr-0 xs:pl-0
+             pl-[150px] gap-[30px] w-full
+              flex flex-col  items-center
 
-
-                <div className='flex  w-full   flex-col gap-[20px] items-end'>
-                    <p className=' text-2xl'> سله التسوق </p>
-                    <div className='flex flex-row-reverse gap-[20px] w-full justify-between'>
-                    <table className="bg-white h-[150px] w-[70%]  ">
+              '>
+              < Returnhome text="سله التسوق"/>
+                <div className='flex  w-full  flex-col gap-[20px] items-end'>
+                    <p className=' text-2xl xs:pr-[20px]'> سله التسوق </p>
+                    <div className='flex flex-row-reverse
+                     gap-[20px] xs:flex-col xs:items-center w-full justify-between'>
+                    <table className="bg-white h-[150px] w-[70%] xs:hidden ">
                       <thead className="bg-gray-200 ">
                         <tr>
                           <th className="border  border-gray-300 px-4 py-2">الإجمالي</th>
@@ -67,7 +70,7 @@ export default function ShoppingBage() {
                           <td className="border flex  items-center gap-[50px] flex-row-reverse border-gray-300 px-5 py-2">
                             <img src={`${surve(el.img)}`} className=' size-[100px]' />
                             <div className='flex flex-col gap-[10px]'>
-                              <p className='font-semibold text-sm'> {el.discription}</p>
+                              <p className='font-semibold text-sm  '> {el.discription}</p>
                               <div
                               onClick={()=>{deleteitem(index)}}
                               className='flex 
@@ -89,9 +92,47 @@ export default function ShoppingBage() {
                        
                       </tbody>
                     </table>
+                    <table className="bg-white w-[90%] hidden xs:block border border-gray-300">
+                    <tbody>
+                      {data1 &&
+                        data1.map((el, index) => (
+                          <>
+                          <tr key={index} className="border-b border-gray-300">
+                            <td className="border border-gray-300 px-4 py-2 bg-gray-200 font-semibold">سلعة</td>
+                            <td className="border border-gray-300 px-4 py-2 flex flex-col items-center">
+                              <img src={`${surve(el.img)}`} className="size-[100px]" />
+                              <p className="font-semibold text-sm text-center">{el.discription}</p>
+                              <div
+                                onClick={() => deleteitem(index)}
+                                className="flex text-red-500 cursor-pointer justify-center gap-[5px] items-center mt-2"
+                              >
+                                <p>احذف المنتج</p>
+                                <MdDelete />
+                              </div>
+                            </td>
+                          </tr>
 
-                      <div className='w-[30%] h-[450px] flex gap-[20px]
-                       flex-col items-center
+                          <tr className="border-b border-gray-300">
+                            <td className="border border-gray-300 px-4 py-2 bg-gray-200 font-semibold">السعر</td>
+                            <td className="border border-gray-300 px-4 py-2 text-center">{el.price} ج</td>
+                          </tr>
+                          <tr  className="border-b border-gray-300">
+                            <td className="border border-gray-300 px-4 py-2 bg-gray-200 font-semibold">الكميّة</td>
+                            <td className="border border-gray-300 px-4 py-2 text-center">منتج 1</td>
+                          </tr>
+                          <tr  className="border-b border-gray-300">
+                            <td className="border border-gray-300 px-4 py-2 bg-gray-200 font-semibold">الإجمالي</td>
+                            <td className="border border-gray-300 px-4 py-2 text-center">{el.price} ج</td>
+                          </tr>
+                          </>
+                       
+                        ))}
+                    </tbody>
+                  </table>
+
+
+                      <div className='w-[30%] xs:w-[90%]  flex gap-[20px]
+                       flex-col items-center xs:gap-[10px]
                       rounded-lg  bg-gray-300'>
                        <p className='text-xl w-full p-[10px] text-center'>
                         قيمة الفاتوره 
@@ -145,7 +186,7 @@ export default function ShoppingBage() {
          hidden&&
           <div className='p-[50px] flex 
           absolute  flex-col
-          w-[700px]  bg-white
+          w-[700px] xs:w-[350px] bg-white
            rounded-lg  shadow
           items-center '>
            
@@ -156,7 +197,7 @@ export default function ShoppingBage() {
             className="text-black absolute top-2 right-2 cursor-pointer text-2xl"
             />
             <form 
-            className='flex flex-col gap-[50px] w-full items-end'
+            className='flex flex-col gap-[50px] xs:gap-[20px]  w-full items-end'
             >
 
               <div className='w-full flex flex-col items-end gap-[15px]'>
@@ -209,10 +250,6 @@ export default function ShoppingBage() {
                 className='flex items-center justify-center self-center  bg-green-500
                 text-white rounded-lg w-[90%]  p-[12px] cursor-pointer
                 text-sm font-semibold duration-200 hover:bg-blue-600'/>
-                     
-              
-
-
             </form>
           
 

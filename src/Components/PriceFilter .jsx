@@ -53,7 +53,7 @@ const PriceFilter = () => {
         values={values}
         onChange={(newValues) => setValues(newValues)}
         renderTrack={({ props, children }) => (
-            <div className="rounded-full p-[10px] bg-gray-300 w-[230px]" {...props}>
+            <div className="rounded-full p-[10px] xs:w-[300px] bg-gray-300 w-[230px]" {...props}>
             {children}
             </div>
         )}
