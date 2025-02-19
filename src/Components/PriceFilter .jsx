@@ -16,20 +16,22 @@ const PriceFilter = () => {
  
 
   const {data} = useRequest({
-    url:`/api/v1/products`,
+    url:`//api/v1/products?category=${id}`,
     method:'GET',
-    params:{category:id}
+   
 },[id])
 
+   
+
   useEffect(() => {
-    if (data?.length) {
-      const minVal = Math.min(...data.filter((el)=>el.categories[0].id == id).map((el) => el.price));
-      const maxVal = Math.max(...data.filter((el)=>el.categories[0].id == id).map((el) => el.price));   
+    if (data) {
+      const minVal = Math.min(...data.map((el) => el.price));
+      const maxVal = Math.max(...data.map((el) => el.price));   
       setMin(minVal);
       setMax(maxVal);
       setValues([minVal, maxVal]);   
     }
-  }, [data,id]);
+  }, [data]);
 
   useEffect(() => {
     if (data?.length) {

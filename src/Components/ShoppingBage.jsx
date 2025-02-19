@@ -1,4 +1,4 @@
-import React, { useContext} from 'react'
+import React, { useContext, useState} from 'react'
 import { datacontext, totalcontext } from '../pages/Home'
 import logo1 from '../assets/image/cart-page.svg'
 import { Link } from 'react-router-dom'
@@ -7,10 +7,12 @@ import { MdDelete } from "react-icons/md";
 import logo2 from '../assets/image/cart-payment-logos.webp'
 import { surve } from '../utils/surve';
 import Returnhome from './Returnhome';
+import { FiX } from "react-icons/fi";
 
 export default function ShoppingBage() {
     const {data1,setdata1}=useContext(datacontext)
     const {total} = useContext(totalcontext)
+    const [hidden , sethedden] =useState(false)
     
      
 
@@ -22,7 +24,7 @@ export default function ShoppingBage() {
   
   
   return (
-    <div className=' flex flex-col     h-screen justify-center items-center'>
+    <div className=' flex flex-col  relative   h-screen justify-center items-center'>
       {
       (data1.length === 0)?
        <div className='flex flex-col gap-[20px] items-center'>
@@ -122,13 +124,16 @@ export default function ShoppingBage() {
                           </div>
                         </div>
                         <div className='bg-gray-200 w-full h-[0.5px]'></div>
-                        <Link 
-                        to={'/'}
+                        <div 
+                        onClick={()=>{
+                        sethedden(true)
+                    
+                        }}  
                         className='flex items-center justify-center  bg-green-500
                         text-white rounded-lg w-[90%]  p-[12px] cursor-pointer
                         text-sm font-semibold duration-200 hover:bg-blue-600'>
                              تاكيد الطلب
-                        </Link>
+                        </div>
                         <img src={logo2} className=' p-2 '/>
                       </div>
                     </div>
@@ -136,6 +141,83 @@ export default function ShoppingBage() {
             </div>
         )  
       } 
+        {
+         hidden&&
+          <div className='p-[50px] flex 
+          absolute  flex-col
+          w-[700px]  bg-white
+           rounded-lg  shadow
+          items-center '>
+           
+            <FiX
+            onClick={()=>{
+              sethedden(false)
+            }}
+            className="text-black absolute top-2 right-2 cursor-pointer text-2xl"
+            />
+            <form 
+            className='flex flex-col gap-[50px] w-full items-end'
+            >
+
+              <div className='w-full flex flex-col items-end gap-[15px]'>
+              <label className='text-lg font-semibold'>
+                 : الاسم     
+              </label>
+              <input
+              placeholder='ادخل الاسم ثنائي'
+              className='w-[90%] outline-none h-[40px]  bg-gray-300 text-gray-800 
+              rounded text-end pr-[10px]'
+              type="text" name="name" required/>
+              </div>
+
+              <div className='w-full flex flex-col items-end gap-[15px]'>
+              <label className='text-lg font-semibold'> 
+              :  رقم الهاتف 
+              </label>
+              <input
+              placeholder='ادخل رقم الهاتف '
+              className='w-[90%] outline-none h-[40px]  bg-gray-300 text-gray-800 
+              rounded text-end pr-[10px]'
+              type="text" name="phone" required/>
+              </div>
+              
+              <div className='w-full flex flex-col items-end gap-[15px]'>
+              <label className='text-lg font-semibold'>
+              :  (إذا كان هناك توصيل) العنوان
+              </label>
+              <input
+              placeholder='من فضلك ادخل عنوان تفصيلي'
+              className='w-[90%] outline-none h-[40px]  bg-gray-300 text-gray-800 
+              rounded text-end pr-[10px]'
+              type="text" name="address"/>
+              </div>
+
+              <div className='flex flex-col gap-[15px] items-end'>
+              <label className='text-lg font-semibold'> 
+               : طريقة الدفع 
+              </label>
+              <div className='flex items-center gap-[20px]'>
+
+              <input type="radio" name="payment_method" value="cash" checked/> الدفع عند الاستلام
+              <input type="radio" name="payment_method" value="online"/> الدفع أونلاين
+              </div>
+              </div>
+
+              <input 
+                 type='submit'  
+                 value={' تاكيد الطلب'}   
+                className='flex items-center justify-center self-center  bg-green-500
+                text-white rounded-lg w-[90%]  p-[12px] cursor-pointer
+                text-sm font-semibold duration-200 hover:bg-blue-600'/>
+                     
+              
+
+
+            </form>
+          
+
+          </div>
+        }
         
     </div>
   )

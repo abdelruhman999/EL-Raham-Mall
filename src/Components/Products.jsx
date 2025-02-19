@@ -17,17 +17,11 @@ export default function Products() {
     });
    
 
-      useEffect(()=>{
-        if(data){
-            console.log(data); 
-           
-            
-        }
-    },[data])
+   
 
     return (
         <div className='flex flex-col items-center gap-[50px]'>
-            <div className=' p-[50px] flex w-full justify-center'>
+            <div className=' xs:p-0 p-[50px] flex w-full justify-center'>
                 <ImageSlider />
             </div>
             {
@@ -62,13 +56,17 @@ export default function Products() {
                                       loop
                                       spaceBetween={0}
                                       slidesPerView={5}
-                                      className="w-full  "
+                                      breakpoints={{
+                                        390: { slidesPerView: 2 }, 
+                                        1024: { slidesPerView: 5 }, 
+                                      }}
+                                      className="w-full "
                                   >
                                       {el.products &&
                                           el.products.map(el => {
                                               return (
                                                   <SwiperSlide key={el.id}>
-                                                      <div className="pl-[40px]">
+                                                      <div className="pl-[40px] xs:p-[10px] ">
                                                           <ProductShape props = {el}/>
                                                       </div>
                                                   </SwiperSlide>

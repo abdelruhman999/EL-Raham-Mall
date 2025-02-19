@@ -23,8 +23,6 @@ export default function Productsdetails() {
  }
   useEffect(()=>{
     if(data){
-
-      console.log(data);
       data.map((el)=>{
         setcurrentimg(`${surve(el.image_1)}`)
       })
@@ -124,7 +122,7 @@ export default function Productsdetails() {
           </div>
            <Buttonpay
            font={18}
-            number = {500}
+            number = {90}
             height = {50}
             key={el.id} 
             props = {el}

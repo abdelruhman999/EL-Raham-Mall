@@ -49,15 +49,16 @@ export default function Login() {
     }
 
     return (
-        <div className=" flex flex-col gap-[50px] items-center">
-            <div className="flex gap-[10px]">
+        <div className='p-[10px] '>
+            <div className="flex  xs:flex-col-reverse w-full justify-center xs:items-center  gap-[10px]">
                 <div
                     className="bg-white
         shadow-lg shadow-gray-200 
         rounded-lg  flex flex-col gap-[30px]
-        items-end p-[40px] h-[200px] w-[500px]"
+        items-end xs:w-full w-[30%] p-[40px] xs:p-[10px] h-[200px]  xs:h-[120px]
+         "
                 >
-                    <h1 className="font-bold text-3xl">عضو جديد</h1>
+                    <h1 className="font-bold xs:text-xl text-3xl">عضو جديد</h1>
                     <Link
                         to={'/Register'}
                         className=" flex items-center
@@ -74,10 +75,10 @@ export default function Login() {
                     onSubmit={handleSubmit}
                     className="bg-white
         shadow-lg shadow-gray-200 
-        rounded  flex flex-col gap-[30px]
-        items-end p-[40px]"
+        rounded-lg  flex flex-col gap-[30px]
+        items-end p-[40px] xs:p-[20px]"
                 >
-                    <h1 className="font-bold text-3xl">الأعضاء المسجلين</h1>
+                    <h1 className="font-bold xs:text-xl text-3xl">الأعضاء المسجلين</h1>
                     <div className="flex flex-col items-end gap-[20px]">
                         <input
                             onChange={e => setemailORphone(e.target.value)}
@@ -85,7 +86,7 @@ export default function Login() {
                             type="text"
                             placeholder="ادخل الايميل / رقم الموبايل"
                             className="text-gray-400 text-end pr-2
-                 outline-none  w-[450px]
+                 outline-none xs:w-[325px] w-[450px]
                  border rounded h-[55px] 
                  "
                         />
@@ -100,7 +101,7 @@ export default function Login() {
                             type="password"
                             placeholder="كلمة المرور"
                             className="text-gray-400 w-[450px] outline-none
-                 border rounded h-[55px] text-end pr-2"
+                 border rounded xs:w-[325px] h-[55px] text-end pr-2"
                         />
                         <div className="flex    w-full justify-between">
                             <p className="text-gray-400">

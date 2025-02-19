@@ -9,12 +9,15 @@ export default function Cheakboxfilter() {
     const [active,setactive] = useState("all")
     const { id } = useParams();
 
-    const {data:productsData } = useRequest({
-        url:`/api/v1/products`,
+     
+
+    const {data:productsData} = useRequest({
+        url:`//api/v1/products?category=${id}`,
         method:'GET',
-        params:{category:id}
+    
     },[id])
 
+   
     const {data:brandsData } = useRequest({
         url:`/api/v1/brands`,
         method:'GET'

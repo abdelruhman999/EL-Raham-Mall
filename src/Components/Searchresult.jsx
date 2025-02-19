@@ -48,14 +48,9 @@ export default function Searchresult() {
             className="text-xs  text-gray-500 w-full
             font-semibold  text-center"
         >
-            {el.name}
+            {el.name.slice(0,5)}
         </p>
-        <p
-            className="text-xs  text-wrap text-gray-500  w-[80px]
-            font-semibold  text-end"
-        >
-            {el.description}
-        </p>
+      
 
         <p className='text-gray-600 text-xs'> 
         متاح ({el.count}) قطعه

@@ -18,10 +18,10 @@ export default function ProductShape({props}) {
         justify-between  gap-[10px] 
         rounded-lg flex  flex-col
         items-center relative
-         w-[200px] h-fit p-[10px]"
+         w-[200px] xs:w-auto h-fit p-[10px]"
     >
         <img
-            className="size-[190px] rounded"
+            className="size-[190px]  rounded"
             src={surve(
                 `${props.image_1}`
             )}
@@ -32,12 +32,7 @@ export default function ProductShape({props}) {
         >
             {props.name}
         </p>
-        <p
-            className="text-sm text-gray-500 w-full
-            font-semibold  text-end"
-        >
-            {props.description}
-        </p>
+     
 
         <p className='text-gray-600'> 
         متاح ({props.count}) قطعه
@@ -50,7 +45,7 @@ export default function ProductShape({props}) {
         
         <div className={`absolute inset-0 flex flex-col duration-200 rounded ${show ? 'opacity-100 scale-100' :'opacity-0 scale-0'} justify-end items-center p-[20px] gap-[20px] bg-gray-400 bg-opacity-50`}>
              <Buttonpay
-                number = {190}
+                number = {120}
                 key={props.id}
                 props = {props}
                 />
@@ -61,7 +56,8 @@ export default function ProductShape({props}) {
             items-center text-sm cursor-pointer
             bg-blue-500 hover:bg-black duration-200 
              text-white  p-[10px]
-            rounded-lg w-[190px] shadow-lg"
+            rounded-lg w-[190px]
+            xs:w-[120%] shadow-lg"
         >
             شاهد تفاصيل المنتج 
         </Link>

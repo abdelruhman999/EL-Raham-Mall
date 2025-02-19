@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext , useEffect , useState } from 'react'
 import { FaSearch } from "react-icons/fa";
 import { GoPerson } from "react-icons/go";
 import { Link } from 'react-router-dom'
 import { CiShoppingCart } from "react-icons/ci";
-import {datacontext, totalcontext, valuecontext} from '../pages/Home'
+import {datacontext , totalcontext , valuecontext} from '../pages/Home'
 import { FaListUl } from "react-icons/fa";
 import { BiSolidOffer } from "react-icons/bi";
 import { IoIosArrowDown } from "react-icons/io";
@@ -13,6 +13,7 @@ import 'animate.css';
 import useRequest from '../hooks/call';
 import { surve } from '../utils/surve';
 import Searchresult from './Searchresult';
+import logo1 from '../assets/image/logoelrahama.png'
 
 
 export default function Navpar() {
@@ -39,12 +40,7 @@ export default function Navpar() {
         }
       },[data1,total])
 
-   useEffect(()=>{
-        if(catogryname){
-          console.log(catogryname);
-        }
-      },[catogryname])
-
+  
 
   return (
     <div>
@@ -53,13 +49,15 @@ export default function Navpar() {
        justify-between 
        '>
       <div className='flex flex-row-reverse gap-5 items-center'>
-      <p className='pr-[100px] font-semibold text-xs '>
+      <p className='pr-[100px] xs:pr-2 font-semibold text-xs '>
         العربيه 
       </p>
       <div className='bg-gray-400 w-[0.5px] opacity-50 h-[12px]'></div>
       </div>
       <div className='flex flex-row-reverse
-       text-xs items-center gap-[20px] pl-[100px] font-semibold'>
+       text-xs items-center gap-[20px]
+        pl-[100px] font-semibold
+        xs:pl-3'>
           <p>
           اتصل بنا 
           </p>
@@ -71,21 +69,29 @@ export default function Navpar() {
       </div> 
      <div className='bg-gray-600 flex
       justify-between flex-row-reverse
-      items-center p-[20px]'>
-        <div className='flex  flex-row-reverse items-center gap-[100px]'>
-      <div>
-        <Link to={'/'} className='poppins-light  text-white'>ELRAHAM-MaLL</Link>
-      </div>
+      items-center p-[20px]  xs:flex-col
+      xs:gap-[20px]
+      '>
+        <div className='flex   xs:w-full flex-row-reverse items-center gap-[200px]
+       xs:gap-0 xs:justify-between'>
+     
+        <Link to={'/'}
+        className='pr-[50px] xs:pr-0 '
+        >
+        <img src={logo1} className='w-[70px] xs:w-[50px]' />
+        </Link>
+   
       <div className='relative'>
       <input
       onChange={(e)=>{
         setvalue(e.target.value)
       }}
-      className='w-[350px] 
-      text-sm text-right pr-1 h-[37px] rounded outline-none '
+      className='w-[350px] xs:w-[250px]
+      text-sm text-right pr-1 h-[37px] rounded outline-none 
+      xs:text-xs'
        type="search" 
        placeholder="...ابحث فى المتجر بالكامل هنا"/>
-       <FaSearch className='absolute text-xl top-2 text-blue-700 left-4' />
+       <FaSearch className='absolute text-xl xs:text-sm xs:top-3 top-2 text-blue-700 left-4' />
        {value&&
        <div className='absolute z-20 p-[10px] bg-white rounded w-full'>
         <Searchresult/>
@@ -94,7 +100,9 @@ export default function Navpar() {
       </div>
     </div>
 
-      <div className='flex pl-[90px] gap-[20px]'>
+      <div className='flex xs:pl-0 
+      pl-[90px] gap-[20px] 
+       '>
         <div className='flex 
         text-gray-50
          items-center gap-[20px]
@@ -130,23 +138,26 @@ export default function Navpar() {
       </div>
       </div> 
       <div className=' relative bg-white
-       shadow flex 
-       justify-center
+       shadow flex  xs:text-xs
+       justify-center 
        '>
         <ul className='flex
          text-blue-800
          flex-row-reverse
-         gap-[70px]  items-center
-         font-bold '
+         gap-[70px] xs:gap-[0px]
+         xs:justify-between xs:w-full
+         items-center
+         font-bold  '
          >
           <li className='relative p-2
-           bg-opacity-50 bg-blue-400'>
+           bg-opacity-50  bg-blue-400'>
             <div
             
             onClick={()=>{
               setCorrect(!Correct)
             }}
             className="flex w-[320px]
+              xs:w-auto xs:justify-start
               justify-end items-center
                gap-2 cursor-pointer"
                > 
@@ -162,23 +173,25 @@ export default function Navpar() {
             </div>
              <ul 
               className={`absolute text-black 
-              ${Correct?'block':'hidden'}  left-0 top-[43px] p-[10px]
-              bg-white shadow z-10`}>
+              ${Correct?'block':'hidden'} 
+               left-0 top-[43px] p-[10px]
+              bg-white shadow z-10
+              xs:left-[-115px] `}>
                 { catogryname&&
                   catogryname.map((el)=>{
                     return(
-                      <div key={el.id}>
+                      <li key={el.id}>
                       <Link
                       to={`cutogry/${el.id}`}
                        className='flex items-center
-                      justify-between w-[317px] 
+                      justify-between xs:w-[200px] w-[317px] 
                       p-[10px] cursor-pointer
                       '>
                         <IoMdArrowDropleft />
                            {el.name}
                       </Link>
                         <div className='bg-gray-200 h-[1px]'></div>
-                      </div>
+                      </li>
                     )
                   })
                 }
@@ -187,21 +200,22 @@ export default function Navpar() {
           </li>
 
 
-          <li>
+          <li className='xs:w-auto '>
             <Link
             to={"sale"}
-            className='flex items-center gap-2'>
+            className='flex items-center  gap-2'>
             عروض وخصومات
             <BiSolidOffer className='text-blue-400 text-xl'/>
             </Link>
           </li>
-          <li >
+          <li className=' xs:w-[30%]'>
             <Link
               onMouseEnter={()=>{
                 setBool(true)
               }}
              
-            className='flex items-center gap-2'>
+            className='flex  
+            items-center xs:w-auto xs:pl-[10px] gap-2'>
             <IoIosArrowDown/>
               جميع الموديلات 
             </Link>
@@ -217,7 +231,7 @@ export default function Navpar() {
       flex-wrap p-[20px]
       gap-[20px] z-[10] w-[500px] 
        bg-white shadow top-[45px]
-        left-0 duration-200
+        left-0 duration-200 xs:w-[300px]
         ${Bool?'scale-100 opacity-100':'scale-0 opacity-0'}
         `}
         >
@@ -228,7 +242,7 @@ export default function Navpar() {
               <Link
               to={`prand/${el.id}`}
               key={el.id}>
-                <img src={`${surve(el.image)}`} className='w-[100px]' />
+                <img src={`${surve(el.image)}`} className='w-[100px] xs:w-[50px]' />
               </Link>
             )
               

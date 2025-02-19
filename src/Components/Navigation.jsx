@@ -21,10 +21,11 @@ export default function Navigation() {
     <div className='pt-[100px]'>
 
     <div className='bg-gray-900 flex
-    gap-[20px] flex-col items-center pt-[80px] pr-[80px] pl-[80px]'>
+    gap-[20px] flex-col items-center xs:pr-[40px] pt-[80px] pr-[80px] pl-[80px]'>
     <div className='
      w-full text-white 
-     flex  justify-between
+     flex xs:flex-col xs:gap-[50px] justify-between
+     
      '>
      <List
      header = 'الفئات الرئيسية'
@@ -92,7 +93,7 @@ export default function Navigation() {
 
 
     </div>
-    <div className='flex w-full justify-between'>
+    <div className='flex w-full xs:flex-wrap justify-between'>
     <img src={logo3} className='size-[100px]' />
     <img src={logo4} className='size-[100px]' />
     <img src={logo5} className='size-[100px]' />
@@ -101,7 +102,7 @@ export default function Navigation() {
     <img src={logo11} className='size-[100px]' />
     </div>
 
-    <p className='text-white '>الرحمه جروب 2024 © جميع الحقوق محفوظة</p>
+    <p className='text-white xs:w-[300px]'>الرحمه جروب 2024 © جميع الحقوق محفوظة</p>
     </div>
     </div>
 
