@@ -18,6 +18,7 @@ export default function Create_order() {
     const { total } = useContext(totalcontext);
 
     const [product, setproduct] = useState({
+        active:null,
         idcountry: '',
         district: '',
         apartment: '',
@@ -34,6 +35,31 @@ export default function Create_order() {
         is_cash_payment:false,
         items: []
     });
+    function henddeleclick(index) {
+        setproduct((prev)=>({
+            ...prev,
+            active:index
+        }))
+      
+
+        if(product.active === 0){
+            setproduct((prev)=>({
+                ...prev,
+                is_cash_payment:true,
+                is_online_payment:false,
+            }))
+            
+      }
+      else if(product.active === 1){
+        setproduct((prev)=>({
+            ...prev,
+            is_cash_payment:false,
+            is_online_payment:true,
+        }))
+      }
+        
+
+    }
 
     useEffect(() => {
       
@@ -50,23 +76,8 @@ export default function Create_order() {
 
     useEffect(() => {
        
-      if(product.value == 'cash'){
-            setproduct((prev)=>({
-                ...prev,
-                is_cash_payment:true,
-                is_online_payment:false,
-            }))
-            
-      }
-      else if(product.value == 'online'){
-        setproduct((prev)=>({
-            ...prev,
-            is_cash_payment:false,
-            is_online_payment:true,
-        }))
-        
-      }
-    }, [product.value]);
+      
+    }, []);
 
    
 
@@ -104,7 +115,7 @@ export default function Create_order() {
             Swal.fire('يجب ان يكون رقم العماره رقما');
             return;
         }
-        if(product.value === '' ){
+        if(product.active === null ){
             Swal.fire ('يجب اختيار طريقة الدفع')
             return
         }
@@ -319,7 +330,7 @@ export default function Create_order() {
                                         }));
                                     }}
                                     className=" outline-none w-[50px] h-[40px]  bg-gray-300 text-gray-800 
-              rounded text-end pr-[10px]"
+                                     rounded text-end pr-[10px]"
                                     type="text"
                                     name="address"
                                 />
@@ -338,7 +349,7 @@ export default function Create_order() {
                                         }));
                                     }}
                                     className=" outline-none w-[50px] h-[40px]  bg-gray-300 text-gray-800 
-              rounded text-end pr-[10px]"
+                                     rounded text-end pr-[10px]"
                                     type="text"
                                     name="address"
                                 />
@@ -358,7 +369,7 @@ export default function Create_order() {
                                     }));
                                 }}
                                 className=" outline-none  h-[40px] w-full  bg-gray-300 text-gray-800 
-              rounded text-end pr-[10px]"
+                                     rounded text-end pr-[10px]"
                                 type="text"
                                 name="address"
                             />
@@ -421,39 +432,61 @@ export default function Create_order() {
                             <label className="text-lg font-semibold">
                                 : طريقة الدفع
                             </label>
-                            <div className="flex items-center gap-[20px]">
+                            <div className="flex items-center gap-[30px]">
                                 {
                                 total <= 30000 &&
                                 <>
-                                <input
-                                onClick={(e)=>{setproduct((prev)=>({
-                                    ...prev,
-                                    value:e.target.value
-                                }))}}
-                                    type="checkbox"
-                                    name="payment_method"
-                                    value="cash"
-                                    
-                                />
-                                <p>
-                                الدفع عند الاستلام
-                                </p>
-                                </>
+                                    <div 
+                                    className='flex items-center 
+                                    w-[150px]  gap-2  flex-row-reverse
+                                    justify-between '
+                                    >
+                                        <p 
+                                        className='font-semibold w-fit  text-sm 
+                                        text-end  text-gray-400 '> 
+                                    الدفع عند الاستلام
+                                        </p>
+                                        <div
+                                        onClick={()=>
+                                            {
+                                              henddeleclick(0)  
+                                            }
+                                            }    
+                                        className='size-[22px]
+                                        cursor-pointer rounded-full 
+                                         text-center border border-gray-400
+                                        flex justify-center  items-center '
+                                        > 
+                                        <div className={`bg-blue-500  duration-200 size-[90%] rounded-full ${product.active === 0 ?'opacity-100 scale-100':'opacity-0 scale-0'}`}></div>
+                                        </div>
+                                    </div>
+                                 </>
                                 }
-                                <input
-                                onClick={(e)=>{setproduct((prev)=>({
-                                    ...prev,
-                                    value:e.target.value
-                                }))}}
-                                    type="checkbox"
-                                    name="payment_method"
-                                    value="online"
-                                    
-                                />{' '}
-                                الدفع أونلاين
-                            </div>
+                                 <div 
+                                    className='flex items-center 
+                                    w-[120px]  flex-row-reverse
+                                    justify-between '>
+                                        <p 
+                                        className='font-semibold text-sm  text-gray-400'> 
+                                          الدفع اونلاين 
+                                        </p>
+                                        <div
+                                       onClick={()=>
+                                        {
+                                          henddeleclick(1)  
+                                        }
+                                        }        
+                                        className='size-[22px]
+                                        cursor-pointer rounded-full 
+                                         text-center border border-gray-400
+                                        flex justify-center items-center '
+                                        > 
+                                        <div className={`bg-blue-500 duration-200 size-[90%] rounded-full ${product.active === 1 ?'opacity-100 scale-100':'opacity-0 scale-0'}`}></div>
+                                        </div>
+                                    </div>
+                                 </div>
                         </div>
-                        {product.is_cash_payment &&
+                        {product.active === 0 &&
                         <div className='flex flex-col w-full gap-4 items-center'>
 
                         <div className="bg-gray-100 self-center  p-4 animate-pulse rounded-2xl shadow-md text-center max-w-md mx-auto mt-6">
@@ -475,8 +508,6 @@ export default function Create_order() {
                                     className="flex items-center gap-[20px]">
                                     <input
                                        onClick={(e)=>{
-                                        console.log(el.id);
-                                        
                                         setproduct((prev)=>({
                                             ...prev,
                                             paymethodid:el.id,
@@ -500,11 +531,10 @@ export default function Create_order() {
 
                              </div>
                         </div>
-                    
                         </div>
                         }
                         {
-                        product.is_online_payment&& 
+                        product.active === 1 && 
                         <div className='self-end flex'>
                         <div className="flex flex-col gap-[15px] items-end">
                         <p className="text-lg font-semibold">
@@ -538,10 +568,8 @@ export default function Create_order() {
                         })
 
                         }
-                       
-
                          </div>
-                    </div>
+                        </div>
                         }
 
                         <input

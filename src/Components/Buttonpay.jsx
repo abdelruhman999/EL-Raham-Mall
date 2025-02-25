@@ -29,9 +29,9 @@ export default function Buttonpay({props,number,height,font}) {
         }}
         className="flex justify-center
         items-center gap-5 text-xs cursor-pointer
-        bg-green-500 xs:text-xs hover:bg-black
+        bg-green-500 hover:bg-black
          duration-200 p-[7px] text-white text-center
-        rounded-lg   shadow-lg"
+        rounded-lg shadow-lg"
         style = 
         {{
          width:`${number}% `,

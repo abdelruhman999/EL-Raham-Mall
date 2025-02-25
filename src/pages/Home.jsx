@@ -36,8 +36,8 @@ export default function Home() {
   const [messagelogin, setMessagelogin] =useState('')
   const [delivery_price,setdelivery_price] = useState(0)
 
-  useEffect(() => {
 
+  useEffect(() => {
     const storedData = localStorage.getItem("data1");
     if (storedData) {
       setdata1(JSON.parse(storedData));
@@ -66,6 +66,7 @@ export default function Home() {
     
         <div className='flex flex-col  gap-[20px]'>
         <Navpar/>
+
         <Routes>
           <Route path='/login' element = {<Login/>}/>
           <Route path='/' element = {<Products/>}/>
@@ -75,9 +76,9 @@ export default function Home() {
           <Route path='cutogry/:id' element = {<Cutogrydetails/>}/>
           <Route path='prand/:id' element = {<Branddetails/>}/>
           <Route path='sale' element = {<Saledetails/>}/>
-          <Route path='/Resultpaymentdetails/:success/:pending' element = {<Resultpaymentdetails/>}/>
+          <Route path='/Resultpaymentdetails' element = {<Resultpaymentdetails/>}/>
+         
         </Routes>
-       
 
         <Navigation/>
         </div>

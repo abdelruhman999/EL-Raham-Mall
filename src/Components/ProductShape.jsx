@@ -46,7 +46,7 @@ export default function ProductShape({props,width}) {
        {props.count > 0 ?
        <>
              <Buttonpay
-                number = {100}
+                number = {120}
                 key={props.id}
                 props = {props}
                 />
