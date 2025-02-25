@@ -1,10 +1,11 @@
 import React, { useContext , useEffect , useState } from 'react'
 import { FaSearch } from "react-icons/fa";
 import { GoPerson } from "react-icons/go";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { CiShoppingCart } from "react-icons/ci";
-import {datacontext , totalcontext , valuecontext} from '../pages/Home'
+import {datacontext , Messagecontext, totalcontext , valuecontext} from '../pages/Home'
 import { FaListUl } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
 import { BiSolidOffer } from "react-icons/bi";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoMdArrowDropleft } from "react-icons/io";
@@ -14,6 +15,9 @@ import useRequest from '../hooks/call';
 import { surve } from '../utils/surve';
 import Searchresult from './Searchresult';
 import logo1 from '../assets/image/logoelrahama.png'
+import { AUTH_KEY } from '../utils/constants';
+import Swal from 'sweetalert2';
+
 
 
 export default function Navpar() {
@@ -23,6 +27,36 @@ export default function Navpar() {
   const {data1}=useContext(datacontext)
   const {total,settotal} = useContext(totalcontext)
   const {value , setvalue} = useContext(valuecontext)
+  const {messagelogin, setMessagelogin} = useContext(Messagecontext)
+  const [log ,setLog] = useState()
+  const navigate = useNavigate()
+
+  function henddeleregister (){
+    Swal.fire({
+      title: "هل أنت متأكد؟",
+      text: "سوف يتم تسجيل الخروج من الحساب.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "نعم، تسجيل الخروج",
+      cancelButtonText: "إلغاء",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem(AUTH_KEY);
+        Swal.fire({
+          text: "تم تسجيل الخروج بنجاح.",
+          icon: "success",
+          timer: 2000,
+          showConfirmButton: false,
+        }).then(() => {
+          navigate("/login");
+          setMessagelogin('تسجيل الدخول')
+        });
+      }
+    });
+  };
+
 
   const {data} = useRequest({
     url:'/api/v1/brands',
@@ -35,10 +69,23 @@ export default function Navpar() {
 
    useEffect(()=>{
         if(data1){
-            const total = data1.reduce((sum,el)=> sum + el.price ,0)
-            settotal(total);     
+            const total = data1.reduce((sum,el)=> sum + el.totalproduct ,0)       
+            settotal(+total.toFixed(2));     
         }
       },[data1,total])
+
+   useEffect(()=>{
+
+   const login  = localStorage.getItem(AUTH_KEY)
+        if(login){
+          setLog(true)
+          setMessagelogin('تسجيل الخروج')
+        }
+        else{
+          setLog(false)
+          setMessagelogin('تسجيل الدخول')
+        }
+      },[messagelogin,log])
 
   
 
@@ -124,6 +171,23 @@ export default function Navpar() {
           </div>
         </div>
 
+          {
+            log?
+            <div
+            onClick={henddeleregister}
+            className='flex 
+            text-gray-50 cursor-pointer
+             items-center gap-2
+              '>
+              <p
+             
+              className='text-end text-sm'>
+                {messagelogin}  
+              </p>
+              <FiLogOut className='text-3xl'/>
+            </div>
+
+            :
         <div className='flex 
         text-gray-50
          items-center gap-2
@@ -131,10 +195,13 @@ export default function Navpar() {
           <Link
           to={'/login'}
           className='text-end text-sm'>
-            <span className='text-xs'>مرحبا</span><br/>تسجيل الدخول
-            </Link>
+            <span className='text-xs'>مرحبا </span> <br />{messagelogin}  
+          </Link>
           <GoPerson className='text-3xl'/>
         </div>
+          }  
+
+          
       </div>
       </div> 
       <div className=' relative bg-white

@@ -33,26 +33,26 @@ export default function Register() {
         return
     }
 
-       await sendRequest(
-        {
-        url:"/api/v1/register/",
-        method:'POST',
-        data: JSON.stringify({
-            email:Email,
-            phone_number:Phone,
-            password:Firstsecurity,
-            first_name:Firstname,
-            last_name:Secondname
-        }),
-
-        headers:{
+    try {
+        const data = await sendRequest({
+          url: "/api/v1/register/",
+          method: "POST",
+          data: JSON.stringify({
+            email: Email,
+            phone_number: Phone,
+            password: Firstsecurity,
+            first_name: Firstname,
+            last_name: Secondname
+          }),
+          headers: {
             'content-type': 'application/json',
-        }
-
-        })
-        .then(data => {
-            console.log(data);  
-        })
+          }
+        });
+        console.log(data);
+      } catch (error) {
+    
+      }
+      
       
     }
   return (
@@ -99,7 +99,7 @@ export default function Register() {
                     required
                     className='w-full h-[50px] text-end pr-[10px] rounded-lg outline-none border'
                     id='البريد'
-                     type="email" />
+                    type="email" />
                 </div>
                 <div className='flex  w-full flex-col gap-1 items-end'>
                     <label htmlFor="كلمه">كلمه المرور</label>

@@ -12,10 +12,16 @@ import Branddetails from '../Components/Branddetails';
 import Saledetails from '../Components/Saledetails';
 
 
+
 export const datacontext = createContext()
 export const totalcontext = createContext()
 export const maxcontext = createContext()
 export const valuecontext = createContext()
+export const hiddencontext = createContext()
+export const quantitycontext = createContext()
+export const delivery_pricecontext = createContext()
+export const Authcontext = createContext()
+export const Messagecontext = createContext()
 
 
 export default function Home() {
@@ -23,19 +29,28 @@ export default function Home() {
   const [data1, setdata1] = useState([]);
   const [total,settotal] = useState(0)
   const [value , setvalue] = useState()
+  const [quantity , setquantity] = useState(1)
   const [maxandmin,setmaxandmin] = useState([])
-  // const [min,setmin] = useState()
-  
-  // useEffect(() => {
-  //   if (data1.length > 0) {
-  //     window.localStorage.setItem("data1", JSON.stringify(data1));
-  //   }
-  // }, [data1]);
+  const [hidden , sethedden] =useState(false)
+  const [messagelogin, setMessagelogin] =useState('')
+  const [delivery_price,setdelivery_price] = useState(0)
 
-  // useEffect(()=>{
-  //   window.localStorage.setItem("count",value)
-    
-  // },[value])
+  useEffect(() => {
+
+    const storedData = localStorage.getItem("data1");
+    if (storedData) {
+      setdata1(JSON.parse(storedData));
+    }
+  }, []);
+
+  
+  useEffect(() => {
+    if (data1.length > 0) {
+     localStorage.setItem("data1", JSON.stringify(data1));
+    }
+  }, [data1]);
+
+ 
   return (
   
       
@@ -43,6 +58,11 @@ export default function Home() {
       <totalcontext.Provider value={{ total,settotal }}>
       <maxcontext.Provider value={{ maxandmin,setmaxandmin}}>
       <valuecontext.Provider value={{ value , setvalue}}>
+      <hiddencontext.Provider value={{ hidden , sethedden}}>
+      <quantitycontext.Provider value={{ quantity , setquantity}}>
+      <delivery_pricecontext.Provider value={{ delivery_price,setdelivery_price}}>
+      <Messagecontext.Provider value={{ messagelogin, setMessagelogin}}>
+    
         <div className='flex flex-col  gap-[20px]'>
         <Navpar/>
         <Routes>
@@ -59,6 +79,11 @@ export default function Home() {
 
         <Navigation/>
         </div>
+    
+      </Messagecontext.Provider>
+      </delivery_pricecontext.Provider>
+      </quantitycontext.Provider>
+      </hiddencontext.Provider>
       </valuecontext.Provider>
       </maxcontext.Provider>
       </totalcontext.Provider>

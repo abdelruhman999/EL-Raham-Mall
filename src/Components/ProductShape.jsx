@@ -18,7 +18,7 @@ export default function ProductShape({props}) {
         justify-between  gap-[10px] 
         rounded-lg flex  flex-col
         items-center relative
-         w-[200px] xs:w-[150px] h-fit p-[10px]"
+         w-[200px] xs:w-[100%] h-fit p-[10px]"
     >
         <img
             className="size-[190px]  rounded"
@@ -42,8 +42,9 @@ export default function ProductShape({props}) {
         </p>  
        
       
-        
         <div className={`absolute inset-0 flex flex-col duration-200 rounded ${show ? 'opacity-100 scale-100' :'opacity-0 scale-0'} justify-end items-center p-[20px] gap-[20px] bg-gray-400 bg-opacity-50`}>
+       {props.count > 0 ?
+       <>
              <Buttonpay
                 number = {120}
                 key={props.id}
@@ -61,6 +62,11 @@ export default function ProductShape({props}) {
         >
             شاهد تفاصيل المنتج 
         </Link>
+       </>
+       :<p className='text-red-500 text-lg font-semibold text-center bg-white rounded-lg'>
+        المنتج غير متوفر بالمتجر
+       </p>
+       }
         </div>
         
     </div>

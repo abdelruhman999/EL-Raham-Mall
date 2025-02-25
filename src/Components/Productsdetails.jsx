@@ -15,8 +15,11 @@ export default function Productsdetails() {
   const [currentimg , setcurrentimg] = useState('')
   const [active,setactive] = useState(0)
   const{data,loading} =  useRequest ({
-    url:`/api/v1/products?id=${id}`,
-    method:'GET'  
+    url:`/api/v1/products`,
+    method:'GET'  ,
+    params:{
+      id
+    }
   })
  function henddeleactive(index){
   setactive(index)
@@ -42,10 +45,10 @@ export default function Productsdetails() {
        
          
          return(
-           <div className='bg-white  items-center p-[50px] flex justify-center gap-[100px] rounded-lg  shadow-lg' key={el.id}>
+           <div  key={el.id} className='bg-white xs:flex-col  items-center p-[50px] flex justify-center gap-[100px] rounded-lg  shadow-lg'>
          <div className='flex flex-col items-center gap-[20px]'>
          
-         <img src={currentimg} className='size-[400px]' />
+         <img src={currentimg} className='size-[400px] xs:size-[300px]' />
          <div className='flex gap-[20px]'>
          <img
          onClick={()=>{
@@ -53,31 +56,31 @@ export default function Productsdetails() {
            henddeleactive(0)
          }
          }
-         src={`${surve(el.image_1)}`} className={`size-[100px] ${active === 0 ? 'border-blue-700': ''} cursor-pointer border p-[10px]`} />
+         src={`${surve(el.image_1)}`} className={`size-[100px] xs:size-[75px] ${active === 0 ? 'border-blue-700': ''} cursor-pointer border p-[10px]`} />
          <img
          onClick={()=>{
            henddeleactive(1)
            setcurrentimg(`${surve(el.image_2)}`)}
          }
-         src={`${surve(el.image_2)}`} className={`size-[100px] ${active === 1 ? 'border-blue-700': ''} cursor-pointer border p-[10px]`} />
+         src={`${surve(el.image_2)}`} className={`size-[100px] xs:size-[75px] ${active === 1 ? 'border-blue-700': ''} cursor-pointer border p-[10px]`} />
          <img
          onClick={()=>{
            henddeleactive(2)
            setcurrentimg(`${surve(el.image_3)}`)}
          }
-         src={`${surve(el.image_3)}`} className={`size-[100px] ${active === 2 ? 'border-blue-700': ''} cursor-pointer border p-[10px]`} />
+         src={`${surve(el.image_3)}`} className={`size-[100px] xs:size-[75px] ${active === 2 ? 'border-blue-700': ''} cursor-pointer border p-[10px]`} />
          </div>
  
          </div>
-         <div className='flex items-center  flex-col gap-[100px]'>
+         <div className='flex items-center flex-col xs:gap-[50px] gap-[100px]'>
  
-          <h1 className='text-2xl font-semibold  text-center'>{el.name} </h1>
+          <h1 className='text-2xl xs:text-xl font-semibold  text-center'>{el.name} </h1>
 
           <div className='flex flex-col  gap-[50px]'>
 
-         <div className='flex  w-full justify-between gap-[50px]'>
+         <div className='flex  xs:items-end xs:flex-col-reverse justify-between '>
          
-           < div className='flex  items-start flex-col gap-[20px]'>
+           < div className='flex xs:items-end items-start flex-col gap-[20px]'>
              <img src={`${surve(el.brand.image)}`} className='w-[120px]' alt="logo prand" />
              <p className='text-xl text-blue-600 font-semibold'>
                
@@ -111,10 +114,10 @@ export default function Productsdetails() {
              <p className='self-end text-gray-600 text-lg'>
                : ادفع من خلال بوابات الدفع الالكترونيه 
              </p>
-            <div className='flex  justify-center   gap-[50px]'>
-             <img src={logo10} alt="logo" className='w-[100px] h-[50px] rounded' />
-             <img src={logo7} alt="logo" className='w-[130px] h-[50px] ' />
-             <img src={logo4} alt="logo" className='w-[100px] h-[50px] rounded' />
+            <div className='flex xs:gap-[25px] justify-center   gap-[50px]'>
+             <img src={logo10} alt="logo" className='w-[100px] xs:w-[60px] xs:h-[30px] h-[50px] rounded' />
+             <img src={logo7} alt="logo" className='w-[130px] xs:w-[60px] xs:h-[30px] h-[50px] ' />
+             <img src={logo4} alt="logo" className='w-[100px] xs:w-[60px] xs:h-[30px] h-[50px] rounded' />
             </div>
            </div>
            <div className='bg-gray-300 w-full h-[0.2px]'></div>

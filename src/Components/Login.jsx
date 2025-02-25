@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import FacebookCurd from './FacebookCurd';
-import Googlecurd from './Googlecurd';
 import Swal from 'sweetalert2';
 import { sendRequest } from '../calls/request';
-import { surve } from '../utils/surve';
-import useRequest from '../hooks/call';
-import { AUTH_KEY , REFRESH_KEY } from '../utils/constants';
+import {AUTH_KEY , REFRESH_KEY } from '../utils/constants';
+import { Messagecontext } from '../pages/Home';
+
 
 export default function Login() {
     const [Message, setMessage] = useState('');
     const [emailORphone, setemailORphone] = useState();
     const [Security, setSecurity] = useState();
+      const {messagelogin, setMessagelogin} = useContext(Messagecontext)
+     
     const navigate = useNavigate();
 
     async function handleSubmit(event) {
@@ -37,15 +37,20 @@ export default function Login() {
             .then(data => {
                 console.log(data);
                 localStorage.setItem(AUTH_KEY,data.access)
-                localStorage.setItem(REFRESH_KEY,data.refresh)
                 localStorage.setItem('token', JSON.stringify(data));
-               
-                Swal.fire('تم التسجيل بنجاح');
-                navigate('/');
-            })
-            .catch(error => {
-                setMessage(`حدث خطأ ${error.detail}`);
-            });
+                 Swal.fire({
+                          text: "تم التسجيل الدخول بنجاح'",
+                          icon: "success",
+                          timer: 1000,
+                          showConfirmButton: false,
+                        }).then(() => {
+                          setMessagelogin('تسجيل الخروج')
+                          navigate("/");
+                        });
+                    })
+                    .catch(error => {
+                        setMessage(`حدث خطأ ${error.detail}`);
+                    });
     }
 
     return (
