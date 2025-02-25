@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Buttonpay from './Buttonpay'
 import { surve } from '../utils/surve'
 
-export default function ProductShape({props}) {
+export default function ProductShape({props,width}) {
     const [show,setshow] = useState(false)
    
   return (
@@ -18,8 +18,8 @@ export default function ProductShape({props}) {
         justify-between  gap-[10px] 
         rounded-lg flex  flex-col
         items-center relative
-         w-[200px] xs:w-[100%] h-fit p-[10px]"
-    >
+          w-[200px] xs:w-[100%] h-fit p-[10px]"  
+         >
         <img
             className="size-[190px]  rounded"
             src={surve(
@@ -46,7 +46,7 @@ export default function ProductShape({props}) {
        {props.count > 0 ?
        <>
              <Buttonpay
-                number = {120}
+                number = {100}
                 key={props.id}
                 props = {props}
                 />
@@ -58,12 +58,15 @@ export default function ProductShape({props}) {
             bg-blue-500 hover:bg-black duration-200 
              text-white  p-[10px]
             rounded-lg w-[190px]
-            xs:w-[120%] shadow-lg"
+            xs:w-[100%] text-center shadow-lg"
         >
             شاهد تفاصيل المنتج 
         </Link>
        </>
-       :<p className='text-red-500 text-lg font-semibold text-center bg-white rounded-lg'>
+       :<p className='text-red-500 text-lg 
+       p-[20px] font-semibold 
+       text-center bg-white rounded-lg
+       xs:text-sm'>
         المنتج غير متوفر بالمتجر
        </p>
        }

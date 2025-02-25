@@ -28,9 +28,10 @@ export default function Create_order() {
         raw_address: '',
         value:'',
         text:'',
+        paymethod:'',
+        paymethodid:0,
         is_online_payment:false,
         is_cash_payment:false,
-        
         items: []
     });
 
@@ -66,6 +67,8 @@ export default function Create_order() {
         
       }
     }, [product.value]);
+
+   
 
     const { data } = useRequest({
         url: '/api/v1/goves',
@@ -109,6 +112,10 @@ export default function Create_order() {
             Swal.fire ('يجب اختيار المحافظه ')
             return
         }
+        if(product.paymethod === '' ){
+            Swal.fire (' حدد طريقة الدفع: محفظة، بطاقة، أو كاش ..... ')
+            return
+        }
 
         await sendRequest({
             url: '/api/v1/create-order',
@@ -127,7 +134,7 @@ export default function Create_order() {
                 is_delivery_paid: false,
                 delivery_price: delivery_price,
                 is_paid: false,
-                total_price: total,
+                total_price: +delivery_price + total,
                 items: product.items
             }),
             headers: {
@@ -136,8 +143,7 @@ export default function Create_order() {
         })
             .then(data => {
                 console.log(data);
-                Swal.fire('تم تاكيد الاوردر بنجاح ');
-                setproduct(()=>({
+                setproduct({
                     idcountry: '',
                     district: '',
                     apartment: '',
@@ -146,15 +152,33 @@ export default function Create_order() {
                     floor: '',
                     delivery_price: '',
                     raw_address: '',
+                    value:'',
                     text:'',
+                    paymethod:'',
+                    is_online_payment:false,
+                    is_cash_payment:false,
                     items: []
-                    }))
-              
+                    })
+                 sendRequest({
+                    url:`/api/v1/payment-link?order_uuid=${data.order_uuid}&payment_method_id=${product.paymethodid}`,
+                    method:'GET',
+                }).then((res)=>{
+                    console.log(res);
+                    sethedden(false)
+                    window.open(res.url, '_blank');
+
+                })
             })
             .catch(error => {
                 console.log(`حدث خطأ ${error.detail}`);
             });
+            
+            
     }
+
+    
+
+
 
     return (
         <>
@@ -211,7 +235,12 @@ export default function Create_order() {
                                             idcountry: selectedItem?.id,
                                             delivery_price: selectedItem?.price
                                         }));
-                                        setdelivery_price(selectedItem?.price);
+                                        if(total > 100000){
+                                            setdelivery_price(0)
+                                        }else{
+
+                                            setdelivery_price(selectedItem?.price);
+                                        }
                                     }}
                                     className="outline-none 
                                     w-[100px] h-[40px]  bg-gray-300
@@ -401,7 +430,7 @@ export default function Create_order() {
                                     ...prev,
                                     value:e.target.value
                                 }))}}
-                                    type="radio"
+                                    type="checkbox"
                                     name="payment_method"
                                     value="cash"
                                     
@@ -416,7 +445,7 @@ export default function Create_order() {
                                     ...prev,
                                     value:e.target.value
                                 }))}}
-                                    type="radio"
+                                    type="checkbox"
                                     name="payment_method"
                                     value="online"
                                     
@@ -441,11 +470,22 @@ export default function Create_order() {
                             {paymethod&&
                             paymethod.map((el)=>{
                                 return(
-                                    <div className="flex items-center gap-[20px]">
+                                    <div
+                                    key={el.id}
+                                    className="flex items-center gap-[20px]">
                                     <input
+                                       onClick={(e)=>{
+                                        console.log(el.id);
+                                        
+                                        setproduct((prev)=>({
+                                            ...prev,
+                                            paymethodid:el.id,
+                                            paymethod:e.target.value
+                                        }))
+                                       }}
                                         type="radio"
                                         name="payment_method"
-                                        value="cash"   
+                                        value={el.name}   
                                     />
                                     <p>
                                     {el.name}
@@ -464,8 +504,7 @@ export default function Create_order() {
                         </div>
                         }
                         {
-                              product.is_online_payment&&
-                              
+                        product.is_online_payment&& 
                         <div className='self-end flex'>
                         <div className="flex flex-col gap-[15px] items-end">
                         <p className="text-lg font-semibold">
@@ -474,8 +513,18 @@ export default function Create_order() {
                         {paymethod&&
                         paymethod.map((el)=>{
                             return(
-                                <div className="flex items-center gap-[20px]">
+                                <div
+                                key={el.id}
+                                className="flex items-center gap-[20px]">
                                 <input
+                                onClick={(e)=>{
+                                    setproduct((prev)=>({
+                                        ...prev,
+                                    paymethodid:el.id,
+                                    paymethod:e.target.value
+                                    }))
+                                }}
+                                   
                                     type="radio"
                                     name="payment_method"
                                     value="cash"   

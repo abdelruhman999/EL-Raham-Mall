@@ -11,10 +11,16 @@ import logo11 from '../assets/image/visa-en.svg'
 import List from './List';
 import { Link } from 'react-router-dom';
 import useRequest from '../hooks/call';
+import { IoMdArrowDropleft } from "react-icons/io";
 
 export default function Navigation() {
+
   const {data} = useRequest({
     url:'/api/v1/brands',
+    method:'GET'
+  })
+  const {data:catogryname} = useRequest({
+    url:'/api/v1/categories',
     method:'GET'
   })
   return (
@@ -27,20 +33,30 @@ export default function Navigation() {
      flex xs:flex-col xs:gap-[50px] justify-between
      
      '>
-     <List
-     header = 'الفئات الرئيسية'
-     texts={[
+<div className='flex flex-col  items-end gap-[20px]'>
+         <h1 className='text-xl text-white'>الاقسام الرئيسيه</h1>
+         <div className='flex flex-wrap w-[170px] xs:w-[50px] text-gray-400  justify-end'>
+         { catogryname&&
+                catogryname.map((el)=>{
+                  return(
+                    <Link
+                    key={el.id}
+                    to={`cutogry/${el.id}`}
+                      className='flex items-center
+                    justify-between xs:w-[200px]
+                    p-[10px] cursor-pointer
+                    '>
+                          {el.name}
+                    </Link>
+                  
+                  )
+                })
+              }      
+           
         
-          'تليفزيونات والكترونيات',
-          'الأجهزة المنزلية',
-          'تكييفات ومنقيات الهواء',
-          'منتجات الصحة والعناية الشخصية',
-          'ساعات',
-          'قطع غيار استهلاكية',
-          'منتجات حصرية',
-          'عروض وخصومات'   
-        ]}
-     />
+         </div>
+      </div>
+     
 
      <List
      header = 'عن الرحمه'
@@ -55,7 +71,7 @@ export default function Navigation() {
 
         <div className='flex flex-col items-end gap-[20px]'>
          <h1 className='text-xl text-white'>جميع البراندات</h1>
-         <div className='flex flex-col text-gray-400 gap-[10px] items-end'>
+         <div className='flex flex-wrap  w-[120px] gap-3  text-gray-400  justify-end'>
            
            {data&&
             data.map((el)=>{

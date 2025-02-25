@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 
 export default function ShoppingBage() {
     const { data1, setdata1 } = useContext(datacontext);
-    const { delivery_price } = useContext(delivery_pricecontext);
+    const { delivery_price,setdelivery_price } = useContext(delivery_pricecontext);
     const { total, settotal } = useContext(totalcontext);
     const { sethedden } = useContext(hiddencontext);
     const navigate = useNavigate();

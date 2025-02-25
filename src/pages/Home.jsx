@@ -10,6 +10,7 @@ import Productsdetails from '../Components/Productsdetails';
 import Cutogrydetails from '../Components/Cutogrydetails';
 import Branddetails from '../Components/Branddetails';
 import Saledetails from '../Components/Saledetails';
+import Resultpaymentdetails from '../Components/Resultpaymentdetails';
 
 
 
@@ -74,6 +75,7 @@ export default function Home() {
           <Route path='cutogry/:id' element = {<Cutogrydetails/>}/>
           <Route path='prand/:id' element = {<Branddetails/>}/>
           <Route path='sale' element = {<Saledetails/>}/>
+          <Route path='/Resultpaymentdetails/:success/:pending' element = {<Resultpaymentdetails/>}/>
         </Routes>
        
 

@@ -109,7 +109,7 @@ export default function Navpar() {
           اتصل بنا 
           </p>
         <div className='bg-gray-400 w-[0.5px] opacity-50 h-[12px]'></div>
-        <p>01102840567</p>
+        <p>+20 128 576 6001</p>
        
       </div>
       

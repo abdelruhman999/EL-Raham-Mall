@@ -66,8 +66,9 @@ export default function Products() {
                                           el.products.map(el => {
                                               return (
                                                   <SwiperSlide key={el.id}>
-                                                      <div className="pl-[40px] xs:p-[10px] ">
-                                                          <ProductShape props = {el}/>
+                                                      <div className="pl-[40px]  xs:p-[10px] ">
+                                                          <ProductShape 
+                                                          props = {el}/>
                                                       </div>
                                                   </SwiperSlide>
                                               );

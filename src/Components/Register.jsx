@@ -50,7 +50,8 @@ export default function Register() {
         });
         console.log(data);
       } catch (error) {
-    
+        console.log(error.detail);
+        
       }
       
       

@@ -33,7 +33,7 @@ export const sendRequest = ({ url, method, params, data, headers = true }) => {
             const errorResponse = await response.json();
             Swal.fire({
                 icon: 'error',
-                text: 'حدث خطأ ما' + `${errorResponse.detail}`,
+                text:`${errorResponse.detail}`,
                 showConfirmButton: false,
                 timer: 10000
             });

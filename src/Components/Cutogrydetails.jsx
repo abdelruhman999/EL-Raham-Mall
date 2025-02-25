@@ -49,17 +49,20 @@ export default function Cutogrydetails() {
           </p>
           <PriceFilter/>
       </div>
-    
-      
       </div>
 
-      <div className=' gap-[10px] flex-wrap  xs:justify-center justify-start  w-full  flex'>
+      <div className=' gap-[10px] flex-wrap 
+       xs:justify-center justify-start 
+        w-full  flex'>
 
         {   
        maxandmin &&
        maxandmin.map((el) => {
               return ( 
-                    <ProductShape key={el.id}  props = {el}/>       
+                <div className=' xs:w-[48%]'>
+
+                  <ProductShape key={el.id}  props = {el}/>       
+                </div>
                    );
           })
         }

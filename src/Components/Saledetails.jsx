@@ -30,7 +30,9 @@ export default function Saledetails() {
     :
     prosuct.map((el)=>{
       return(
+        <div className='w-[45%]'>
         <ProductShape key={el.id} props = {el}/>  
+        </div>
       )
     })
     

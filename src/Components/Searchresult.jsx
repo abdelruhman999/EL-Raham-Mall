@@ -9,20 +9,28 @@ import Loader from './Loader'
 export default function Searchresult() {
     const {value} = useContext(valuecontext)
       const [show,setshow] = useState(null)
+     
     
     const {data,loading} = useRequest({
         url:`/api/v1/products?search=${value}`,
-        method:'GET'
-    })
+        method:'GET',
+        // params:{
+        //     value
+        // }
+       
+        
+    },[value])
+
+ 
   
   return (
-    <div className='flex flex-wrap   gap-[10px]  justify-center'>
+    <div className='flex flex-wrap  w-full gap-[10px]  justify-center'>
      {
      loading?
      <Loader/>
      :
-     data &&
-        data.map(el => {
+     data ?
+     data.map(el => {
         return (
           <div
             key={el.id} 
@@ -83,10 +91,10 @@ export default function Searchresult() {
         </div>
         
          </div>
-      
-     
-        );
+        )
+
         })
+      :''
     }
     </div>
   )
