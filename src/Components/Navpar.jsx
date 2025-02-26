@@ -74,9 +74,9 @@ export default function Navpar() {
         }
       },[data1,total])
 
+      const login  = localStorage.getItem(AUTH_KEY)
    useEffect(()=>{
 
-   const login  = localStorage.getItem(AUTH_KEY)
         if(login){
           setLog(true)
           setMessagelogin('تسجيل الخروج')
@@ -204,120 +204,96 @@ export default function Navpar() {
           
       </div>
       </div> 
-      <div className=' relative bg-white
-       shadow flex  xs:text-xs
-       justify-center 
-       '>
-        <ul className='flex
-         text-blue-800
-         flex-row-reverse
-         gap-[70px] xs:gap-[0px]
-         xs:justify-between xs:w-full
-         items-center
-         font-bold  '
-         >
-          <li className='relative p-2
-           bg-opacity-50  bg-blue-400'>
-            <div
-            
-            onClick={()=>{
-              setCorrect(!Correct)
-            }}
-            className="flex w-[320px]
-              xs:w-auto xs:justify-start
-              justify-end items-center
-               gap-2 cursor-pointer"
-               > 
-            جميع الاقسام  
-            <div className={`duration-500 ${Correct?'rotate-90':''}`}>
-            {Correct?
-                <FiX className="text-blue-400  text-2xl"/>
-              :(
-                <FaListUl className='text-blue-400 text-xl'/>
-              )
-            }
-            </div>
-            </div>
-             <ul 
-              className={`absolute text-black 
-              ${Correct?'block':'hidden'} 
-               left-0 top-[43px] p-[10px]
-              bg-white shadow z-10
-              xs:left-[-115px] `}>
-                { catogryname&&
-                  catogryname.map((el)=>{
-                    return(
-                      <li key={el.id}>
-                      <Link
-                      to={`cutogry/${el.id}`}
-                       className='flex items-center
-                      justify-between xs:w-[200px] w-[317px] 
-                      p-[10px] cursor-pointer
-                      '>
-                        <IoMdArrowDropleft />
-                           {el.name}
-                      </Link>
-                        <div className='bg-gray-200 h-[1px]'></div>
-                      </li>
-                    )
-                  })
-                }
-               
-            </ul>
-          </li>
-
-
-          <li className='xs:w-auto '>
-            <Link
-            to={"sale"}
-            className='flex items-center  gap-2'>
-            عروض وخصومات
-            <BiSolidOffer className='text-blue-400 text-xl'/>
-            </Link>
-          </li>
-          <li className=' xs:w-[30%]'>
-            <Link
-              onMouseEnter={()=>{
-                setBool(true)
-              }}
-             
-            className='flex  
-            items-center xs:w-auto xs:pl-[10px] gap-2'>
-            <IoIosArrowDown/>
-              جميع الموديلات 
-            </Link>
-          </li>
-        </ul>
-
-     {/* صور العلامات التجاريه  */}
+      <div className='relative bg-white shadow flex xs:text-xs justify-center'>
+  <ul className='flex text-blue-800 flex-row-reverse gap-[70px] xs:gap-[10px] xs:justify-between xs:w-full items-center font-bold'>
+    <li className='relative p-2 bg-opacity-50 bg-blue-400'>
       <div
-      onMouseLeave={()=>{
-        setBool(false)
-      }}
-      className={`absolute flex 
-      flex-wrap p-[20px]
-      gap-[20px] z-[10] w-[500px] 
-       bg-white shadow top-[45px]
-        left-0 duration-200 xs:w-[300px]
-        ${Bool?'scale-100 opacity-100':'scale-0 opacity-0'}
-        `}
+        onClick={() => {
+          setCorrect(!Correct);
+        }}
+        className="flex w-[320px] xs:w-auto xs:justify-start justify-end items-center gap-2 cursor-pointer"
+      >
+        جميع الاقسام
+        <div className={`duration-500 ${Correct ? 'rotate-90' : ''}`}>
+          {Correct ? (
+            <FiX className="text-blue-400 text-2xl" />
+          ) : (
+            <FaListUl className='text-blue-400 text-xl' />
+          )}
+        </div>
+      </div>
+      <ul
+        className={`absolute text-black ${Correct ? 'block' : 'hidden'} left-0 top-[43px] p-[10px] bg-white shadow z-10 xs:left-[-115px]`}
+      >
+        {catogryname &&
+          catogryname.map((el) => {
+            return (
+              <li key={el.id}>
+                <Link
+                  to={`cutogry/${el.id}`}
+                  className='flex items-center justify-between xs:w-[200px] w-[317px] p-[10px] cursor-pointer'
+                >
+                  <IoMdArrowDropleft />
+                  {el.name}
+                </Link>
+                <div className='bg-gray-200 h-[1px]'></div>
+              </li>
+            );
+          })}
+      </ul>
+    </li>
+
+    <li className='xs:w-fit text-center '>
+      <Link
+        to={"sale"}
+        className='flex justify-center items-center xs:gap-0 gap-2'
+      >
+        عروض وخصومات
+        <BiSolidOffer className='text-blue-400 text-xl' />
+      </Link>
+    </li>
+    <li className='xs:w-auto text-center'>
+      <Link
+        onMouseEnter={() => {
+          setBool(true);
+        }}
+        className='flex items-center gap-2'
+      >
+        <IoIosArrowDown />
+        جميع الموديلات
+      </Link>
+    </li>
+    {login && (
+      <li className='xs:w-auto text-center'>
+        <Link
+          to={'Previousorders'}
+          className='flex items-center xs:pl-[10px] gap-2'
         >
-          {
-            data&&
-            data.map((el)=>{
-            return(
-              <Link
-              to={`prand/${el.id}`}
-              key={el.id}>
-                <img src={`${surve(el.image)}`} className='w-[100px] xs:w-[50px]' />
-              </Link>
-            )
-              
-            })
-          }
+          الاوردارت السابقه
+        </Link>
+      </li>
+    )}
+  </ul>
+
+  {/* صور العلامات التجاريه */}
+  <div
+    onMouseLeave={() => {
+      setBool(false);
+    }}
+    className={`absolute flex flex-wrap p-[20px] gap-[20px] z-[10] w-[500px] bg-white shadow top-[45px] left-0 duration-200 xs:w-[300px] ${Bool ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
+  >
+    {data &&
+      data.map((el) => {
+        return (
+          <Link to={`prand/${el.id}`} key={el.id}>
+            <img src={`${surve(el.image)}`} className='w-[100px] xs:w-[50px]' />
+          </Link>
+        );
+      })}
+  </div>
       </div>
-     
-      </div>
+
+
     </div>
   )
 }

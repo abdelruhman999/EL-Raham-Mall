@@ -3,6 +3,7 @@ import FacebookCurd from './FacebookCurd'
 import Googlecurd from './Googlecurd'
 import Swal from "sweetalert2";
 import { sendRequest } from '../calls/request';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
     const [Firstname ,setFirstname] =useState('')
@@ -11,7 +12,7 @@ export default function Register() {
     const [Firstsecurity ,setFirstsecurity] =useState()
     const [Secondsecurity ,setSecondsecurity] =useState()
     const [Phone ,setPhone] =useState()
-
+    const navigate = useNavigate();
    async function Hendellsubmited(e){
     e.preventDefault();
     if(!Firstname || 
@@ -34,7 +35,7 @@ export default function Register() {
     }
 
     try {
-        const data = await sendRequest({
+         await sendRequest({
           url: "/api/v1/register/",
           method: "POST",
           data: JSON.stringify({
@@ -47,8 +48,20 @@ export default function Register() {
           headers: {
             'content-type': 'application/json',
           }
-        });
-        console.log(data);
+
+        }).then((data => {
+          console.log(data);
+           Swal.fire({
+                    text: "تم انشاء الحساب  بنجاح'",
+                    icon: "success",
+                    timer: 1000,
+                    showConfirmButton: false,
+                  }).then(() => {
+                    navigate("/login");
+                  });
+              })
+            )
+       
       } catch (error) {
         console.log(error.detail);
         

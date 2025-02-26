@@ -11,6 +11,7 @@ import Cutogrydetails from '../Components/Cutogrydetails';
 import Branddetails from '../Components/Branddetails';
 import Saledetails from '../Components/Saledetails';
 import Resultpaymentdetails from '../Components/Resultpaymentdetails';
+import Previousorders from '../Components/Previousorders';
 
 
 
@@ -77,6 +78,7 @@ export default function Home() {
           <Route path='prand/:id' element = {<Branddetails/>}/>
           <Route path='sale' element = {<Saledetails/>}/>
           <Route path='/Resultpaymentdetails' element = {<Resultpaymentdetails/>}/>
+          <Route path='/Previousorders' element = {<Previousorders/>}/>
          
         </Routes>
 

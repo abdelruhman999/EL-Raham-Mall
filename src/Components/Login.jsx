@@ -10,8 +10,7 @@ export default function Login() {
     const [Message, setMessage] = useState('');
     const [emailORphone, setemailORphone] = useState();
     const [Security, setSecurity] = useState();
-      const {messagelogin, setMessagelogin} = useContext(Messagecontext)
-     
+    const {messagelogin, setMessagelogin} = useContext(Messagecontext)
     const navigate = useNavigate();
 
     async function handleSubmit(event) {
@@ -35,7 +34,7 @@ export default function Login() {
             }
         })
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 localStorage.setItem(AUTH_KEY,data.access)
                 localStorage.setItem('token', JSON.stringify(data));
                  Swal.fire({

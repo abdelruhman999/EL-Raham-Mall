@@ -155,23 +155,6 @@ export default function Create_order() {
             }
         })
             .then(data => {
-                console.log(data);
-                setproduct({
-                    idcountry: '',
-                    district: '',
-                    apartment: '',
-                    street: '',
-                    building: '',
-                    floor: '',
-                    delivery_price: '',
-                    raw_address: '',
-                    value:'',
-                    text:'',
-                    paymethod:'',
-                    is_online_payment:false,
-                    is_cash_payment:false,
-                    items: []
-                    })
                  sendRequest({
                     url:`/api/v1/payment-link?order_uuid=${data.order_uuid}&payment_method_id=${product.paymethodid}`,
                     method:'GET',
