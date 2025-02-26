@@ -18,7 +18,7 @@ export default function Create_order() {
     const { total } = useContext(totalcontext);
 
     const [product, setproduct] = useState({
-        active:null,
+        active:0,
         idcountry: '',
         district: '',
         apartment: '',
@@ -40,6 +40,8 @@ export default function Create_order() {
             ...prev,
             active:index
         }))
+    
+        
       
 
         if(product.active === 0){
@@ -61,6 +63,11 @@ export default function Create_order() {
 
     }
 
+   
+    useEffect(() => {
+      
+        console.log(product.active);
+    }, [product.active]);
     useEffect(() => {
       
         if (data1) {
@@ -74,12 +81,7 @@ export default function Create_order() {
         }
     }, [data1]);
 
-    useEffect(() => {
-       
-      
-    }, []);
-
-   
+    
 
     const { data } = useRequest({
         url: '/api/v1/goves',

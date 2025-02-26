@@ -35,7 +35,7 @@ export default function Navigation() {
      '>
 <div className='flex flex-col  items-end gap-[20px]'>
          <h1 className='text-xl text-white'>الاقسام الرئيسيه</h1>
-         <div className='flex flex-wrap w-[170px] xs:w-[50px] text-gray-400  justify-end'>
+         <div className='flex flex-wrap gap-[10px] w-[170px] xs:w-[50px] text-gray-400  justify-end'>
          { catogryname&&
                 catogryname.map((el)=>{
                   return(
@@ -71,7 +71,7 @@ export default function Navigation() {
 
         <div className='flex flex-col items-end gap-[20px]'>
          <h1 className='text-xl text-white'>جميع البراندات</h1>
-         <div className='flex flex-wrap  w-[120px] gap-3  text-gray-400  justify-end'>
+         <div className='flex flex-wrap  w-[120px] gap-[20px] text-gray-400  justify-end'>
            
            {data&&
             data.map((el)=>{
