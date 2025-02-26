@@ -24,6 +24,7 @@ export const quantitycontext = createContext()
 export const delivery_pricecontext = createContext()
 export const Authcontext = createContext()
 export const Messagecontext = createContext()
+export const wordcontext = createContext()
 
 
 export default function Home() {
@@ -36,6 +37,7 @@ export default function Home() {
   const [hidden , sethedden] =useState(false)
   const [messagelogin, setMessagelogin] =useState('')
   const [delivery_price,setdelivery_price] = useState(0)
+  const [words ,setwords] = useState('')
 
 
   useEffect(() => {
@@ -64,6 +66,7 @@ export default function Home() {
       <quantitycontext.Provider value={{ quantity , setquantity}}>
       <delivery_pricecontext.Provider value={{ delivery_price,setdelivery_price}}>
       <Messagecontext.Provider value={{ messagelogin, setMessagelogin}}>
+      <wordcontext.Provider value={{words ,setwords}}>
     
         <div className='flex flex-col  gap-[20px]'>
         <Navpar/>
@@ -77,7 +80,7 @@ export default function Home() {
           <Route path='cutogry/:id' element = {<Cutogrydetails/>}/>
           <Route path='prand/:id' element = {<Branddetails/>}/>
           <Route path='sale' element = {<Saledetails/>}/>
-          <Route path='/Resultpaymentdetails' element = {<Resultpaymentdetails/>}/>
+          <Route path='/EL-Raham-Moll/Resultpaymentdetails' element = {<Resultpaymentdetails/>}/>
           <Route path='/Previousorders' element = {<Previousorders/>}/>
          
         </Routes>
@@ -85,6 +88,7 @@ export default function Home() {
         <Navigation/>
         </div>
     
+      </wordcontext.Provider>
       </Messagecontext.Provider>
       </delivery_pricecontext.Provider>
       </quantitycontext.Provider>

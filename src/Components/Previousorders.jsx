@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import useRequest from '../hooks/call'
 import Loader from './Loader'
 import Returnhome from './Returnhome'
+import { wordcontext } from '../pages/Home'
 export default function Previousorders() {
 
-
+ const {words} = useContext(wordcontext)
 
     const {data,loading} = useRequest({
         url:'/api/v1/orders',
@@ -15,11 +16,7 @@ export default function Previousorders() {
    
   return (
         <div className='flex flex-col xs:gap-[50px] gap-[70px]'>
-     
-
         <Returnhome text='الاوردرات السابقه '/>
-
-        
         {loading ?
           <Loader/>
           :
@@ -43,7 +40,9 @@ export default function Previousorders() {
                   <tr key={el.id} className="border-b">
                     <td className="py-3 px-4 text-center">{el.id}</td>
                     <td className="py-3 px-4 text-center">{new Date(el.order_date).toLocaleString()}</td>
-                    <td className="py-3 px-4 text-center text-green-600 font-semibold">مكتمل</td>
+                    <td className="py-3 px-4 text-center text-green-600 font-semibold">
+                      {words}
+                    </td>
                     <td className="py-3 px-4 text-center">بطاقة</td>
                     <td className="py-3 px-4 text-center">{el.total_price} جـ</td>
                     <td className="py-3 px-4 text-center hidden sm:table-cell">

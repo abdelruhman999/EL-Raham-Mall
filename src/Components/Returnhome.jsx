@@ -4,7 +4,7 @@ import { IoMdArrowDropleft } from "react-icons/io";
 
 export default function Returnhome(props) {
   return (
-    <div className='flex self-end xs:pr-[10px] flex-row-reverse gap-[10px] items-center'>
+    <div className='flex self-end  pr-[10px] flex-row-reverse gap-[10px] items-center'>
                      <div className='flex text-gray-400
                       items-center gap-[5px]'>
                      <IoMdArrowDropleft />

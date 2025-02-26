@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import {wordcontext} from '../pages/Home'
 
 export default function Resultpaymentdetails() {
-    const [words ,setwords] = useState('')
+    const {words ,setwords} = useContext(wordcontext)
     const location = useLocation()
     const queryParams = new URLSearchParams(location.search)
     const success = queryParams.get("success")
-   const pending =  queryParams.get("pending")
-   const id =  queryParams.get("id")
-   const source_data =  queryParams.get("source_data.type")
-   const sub_type =  queryParams.get("source_data.sub_type")
-   const amount_cents =  queryParams.get("amount_cents")
-   const created_at =  queryParams.get("created_at")
+    const pending =  queryParams.get("pending")
+    const id =  queryParams.get("id")
+    const source_data =  queryParams.get("source_data.type")
+    const sub_type =  queryParams.get("source_data.sub_type")
+    const amount_cents =  queryParams.get("amount_cents")
+    const created_at =  queryParams.get("created_at")
    
+   console.log(queryParams);
    
    
    useEffect(()=>{
