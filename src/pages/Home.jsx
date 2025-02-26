@@ -80,7 +80,7 @@ export default function Home() {
           <Route path='cutogry/:id' element = {<Cutogrydetails/>}/>
           <Route path='prand/:id' element = {<Branddetails/>}/>
           <Route path='sale' element = {<Saledetails/>}/>
-          <Route path='/EL-Raham-Moll/Resultpaymentdetails' element = {<Resultpaymentdetails/>}/>
+          <Route path='/Resultpaymentdetails' element = {<Resultpaymentdetails/>}/>
           <Route path='/Previousorders' element = {<Previousorders/>}/>
          
         </Routes>
