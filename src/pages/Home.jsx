@@ -12,6 +12,7 @@ import Branddetails from '../Components/Branddetails';
 import Saledetails from '../Components/Saledetails';
 import Resultpaymentdetails from '../Components/Resultpaymentdetails';
 import Previousorders from '../Components/Previousorders';
+import { Expire } from '../utils/constants';
 
 
 
@@ -54,10 +55,20 @@ export default function Home() {
     }
   }, [data1]);
 
+  useEffect(() => {
+   const expire = localStorage.getItem(Expire)
+   const givenTime = new Date(expire); 
+   const currentTime = new Date(); 
+    if(givenTime < currentTime){
+     localStorage.removeItem(AUTH_KEY)
+     localStorage.removeItem(Expire)
+    } 
+  }, []);
+
+
  
   return (
-  
-      
+
       <datacontext.Provider value={{ data1,setdata1 }}>
       <totalcontext.Provider value={{ total,settotal }}>
       <maxcontext.Provider value={{ maxandmin,setmaxandmin}}>

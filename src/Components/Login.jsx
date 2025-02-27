@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { sendRequest } from '../calls/request';
-import {AUTH_KEY , REFRESH_KEY } from '../utils/constants';
+import {AUTH_KEY , Expire, REFRESH_KEY } from '../utils/constants';
 import { Messagecontext } from '../pages/Home';
 
 
@@ -34,8 +34,9 @@ export default function Login() {
             }
         })
             .then(data => {
-                // console.log(data);
+                console.log(data);
                 localStorage.setItem(AUTH_KEY,data.access)
+                localStorage.setItem(Expire,data.expire)
                 localStorage.setItem('token', JSON.stringify(data));
                  Swal.fire({
                           text: "تم التسجيل الدخول بنجاح'",

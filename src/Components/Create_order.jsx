@@ -41,9 +41,6 @@ export default function Create_order() {
             active:index
         }))
     
-        
-      
-
         if(product.active === 0){
             setproduct((prev)=>({
                 ...prev,
@@ -65,8 +62,7 @@ export default function Create_order() {
 
    
     useEffect(() => {
-      
-        console.log(product.active);
+        henddeleclick(product.active)
     }, [product.active]);
     useEffect(() => {
       
@@ -144,7 +140,9 @@ export default function Create_order() {
                 raw_address: product.raw_address,
                 is_cash_payment: product.is_cash_payment,
                 is_online_payment: product.is_online_payment,
+                is_delivery_paid: false,
                 delivery_price: delivery_price,
+                is_paid: false,
                 total_price: +delivery_price + total,
                 items: product.items
             }),
@@ -153,6 +151,8 @@ export default function Create_order() {
             }
         })
             .then(data => {
+                console.log(data.order_uuid);
+                
                  sendRequest({
                     url:`/api/v1/payment-link?order_uuid=${data.order_uuid}&payment_method_id=${product.paymethodid}`,
                     method:'GET',

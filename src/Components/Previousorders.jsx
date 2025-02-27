@@ -1,18 +1,18 @@
-import React, { useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import useRequest from '../hooks/call'
 import Loader from './Loader'
 import Returnhome from './Returnhome'
-import { wordcontext } from '../pages/Home'
+
 export default function Previousorders() {
 
- const {words} = useContext(wordcontext)
+   const [words ,setwords] = useState('')
 
     const {data,loading} = useRequest({
         url:'/api/v1/orders',
         method:'GET'
     })
 
-
+  
    
   return (
         <div className='flex flex-col xs:gap-[50px] gap-[70px]'>
@@ -31,19 +31,38 @@ export default function Previousorders() {
                 <th className="py-3 px-4 border-b">الإجمالي</th>
                 <th className="py-3 px-4 border-b hidden sm:table-cell">المنتجات</th>
                 <th className="py-3 px-4 border-b">العنوان</th>
-                <th className="py-3 px-4 border-b">حالة التوصيل</th>
+                <th className="py-3 px-4 border-b"> عمليات الدفع </th>
               </tr>
             </thead>
             <tbody>
               {data && data.map((el) => {
+              
+             
+                console.log(el);
+                
+                
                 return (
                   <tr key={el.id} className="border-b">
                     <td className="py-3 px-4 text-center">{el.id}</td>
                     <td className="py-3 px-4 text-center">{new Date(el.order_date).toLocaleString()}</td>
                     <td className="py-3 px-4 text-center text-green-600 font-semibold">
-                      {words}
+                    {
+                      el.is_paid ?
+                      <p>
+                        مكتمل 
+                      </p>
+                      :
+                        el.is_delivery_paid ?
+                        
+                        <p>
+                          مكتمل
+                        </p>
+                      :<p className='text-red-500'>
+                        غير مكتمل  
+                      </p>
+                    }
                     </td>
-                    <td className="py-3 px-4 text-center">بطاقة</td>
+                    <td className="py-3 px-4 text-center">{el.payment_method?el.payment_method.name:'-'}</td>
                     <td className="py-3 px-4 text-center">{el.total_price} جـ</td>
                     <td className="py-3 px-4 text-center hidden sm:table-cell">
                       {el.items.map((item) => {
@@ -53,7 +72,24 @@ export default function Previousorders() {
                       })}
                     </td>
                     <td className="py-3 px-4 text-center">{el.country.name}</td>
-                    <td className="py-3 px-4 text-center text-green-500">تم التوصيل</td>
+                    <td className="py-3 px-4 text-center text-green-500">
+                     {
+                      el.is_paid ?
+                      <p>
+                        تم الدفع
+                      </p>
+                      :
+                        el.is_delivery_paid ?
+                        
+                        <p className='text-orange-500'>
+                          تم دفع قيمة التوصيل 
+                        </p>
+                      :<p className='text-red-500'>
+                        لم يتم الدفع
+                      </p>
+                    }
+                    
+                     </td>
                   </tr>
                 );
               })}
