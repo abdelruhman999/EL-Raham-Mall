@@ -4,7 +4,7 @@ import { sendRequest } from '../calls/request';
 
 function useRequest(reqConfig, dependency = []) {
     const [loading, setLoading] = useState(false);
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(() => {

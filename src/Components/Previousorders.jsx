@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import useRequest from '../hooks/call'
 import Loader from './Loader'
 import Returnhome from './Returnhome'
-
+import logo from '../assets/image/logopre.png'
 export default function Previousorders() {
 
-   const [words ,setwords] = useState('')
+   
 
     const {data,loading} = useRequest({
         url:'/api/v1/orders',
@@ -20,6 +20,8 @@ export default function Previousorders() {
         {loading ?
           <Loader/>
           :
+          data.length>0 ?
+
           <div className="p-[20px] overflow-x-auto ">
           <table className="min-w-full border border-gray-300 bg-white shadow-md rounded-lg">
             <thead className="bg-gray-100">
@@ -35,7 +37,7 @@ export default function Previousorders() {
               </tr>
             </thead>
             <tbody>
-              {data && data.map((el) => {
+              {data.map((el) => {
               
              
                 console.log(el);
@@ -95,7 +97,17 @@ export default function Previousorders() {
               })}
             </tbody>
           </table>
-        </div>
+          </div>
+          :
+          <div className='w-full flex flex-col items-center justify-center gap-[10px]'>
+            <img src={logo} alt="" className='rounded' />
+            <h1 className='text-black text-3xl font-semibold'>
+           ! لا يوجد منتجات في قائمة مشترياتك
+            </h1>
+            <p className='text-gray-400  text-end text-wrap w-[300px]'>
+        مول الرحمه مكانك الاول لكل احتياجات الالكترونيات والأجهزة. تسوق الأن أكبر تشكيلة منتجات و عروض و تسهيلات فالدفع.
+            </p>
+          </div>
         
         }
         </div>

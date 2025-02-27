@@ -12,7 +12,7 @@ import Branddetails from '../Components/Branddetails';
 import Saledetails from '../Components/Saledetails';
 import Resultpaymentdetails from '../Components/Resultpaymentdetails';
 import Previousorders from '../Components/Previousorders';
-import { Expire } from '../utils/constants';
+import { AUTH_KEY, Expire } from '../utils/constants';
 
 
 
@@ -26,6 +26,7 @@ export const delivery_pricecontext = createContext()
 export const Authcontext = createContext()
 export const Messagecontext = createContext()
 export const wordcontext = createContext()
+export const logcontext = createContext()
 
 
 export default function Home() {
@@ -39,6 +40,7 @@ export default function Home() {
   const [messagelogin, setMessagelogin] =useState('')
   const [delivery_price,setdelivery_price] = useState(0)
   const [words ,setwords] = useState('')
+   const [log ,setLog] = useState()
 
 
   useEffect(() => {
@@ -62,7 +64,9 @@ export default function Home() {
     if(givenTime < currentTime){
      localStorage.removeItem(AUTH_KEY)
      localStorage.removeItem(Expire)
+    setLog(false)
     } 
+
   }, []);
 
 
@@ -78,6 +82,7 @@ export default function Home() {
       <delivery_pricecontext.Provider value={{ delivery_price,setdelivery_price}}>
       <Messagecontext.Provider value={{ messagelogin, setMessagelogin}}>
       <wordcontext.Provider value={{words ,setwords}}>
+      <logcontext.Provider value={{log ,setLog}}>
     
         <div className='flex flex-col  gap-[20px]'>
         <Navpar/>
@@ -99,6 +104,7 @@ export default function Home() {
         <Navigation/>
         </div>
     
+      </logcontext.Provider>
       </wordcontext.Provider>
       </Messagecontext.Provider>
       </delivery_pricecontext.Provider>

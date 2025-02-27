@@ -3,7 +3,7 @@ import { FaSearch } from "react-icons/fa";
 import { GoPerson } from "react-icons/go";
 import { Link, useNavigate } from 'react-router-dom'
 import { CiShoppingCart } from "react-icons/ci";
-import {datacontext , Messagecontext, totalcontext , valuecontext} from '../pages/Home'
+import {datacontext , logcontext, Messagecontext, totalcontext , valuecontext} from '../pages/Home'
 import { FaListUl } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { BiSolidOffer } from "react-icons/bi";
@@ -28,7 +28,7 @@ export default function Navpar() {
   const {total,settotal} = useContext(totalcontext)
   const {value , setvalue} = useContext(valuecontext)
   const {messagelogin, setMessagelogin} = useContext(Messagecontext)
-  const [log ,setLog] = useState()
+  const {log ,setLog} = useContext(logcontext)
   const navigate = useNavigate()
 
   function henddeleregister (){
@@ -75,7 +75,7 @@ export default function Navpar() {
       },[data1,total])
 
       const login  = localStorage.getItem(AUTH_KEY)
-   useEffect(()=>{
+      useEffect(()=>{
 
         if(login){
           setLog(true)
@@ -187,7 +187,7 @@ export default function Navpar() {
               <FiLogOut className='text-3xl'/>
             </div>
 
-            :
+        :
         <div className='flex 
         text-gray-50
          items-center gap-2

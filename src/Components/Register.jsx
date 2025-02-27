@@ -10,7 +10,7 @@ export default function Register() {
     const [Secondname ,setSecondname] =useState('')
     const [Email ,setEmail] =useState('')
     const [Firstsecurity ,setFirstsecurity] =useState()
-    const [Secondsecurity ,setSecondsecurity] =useState()
+
     const [Phone ,setPhone] =useState()
     const navigate = useNavigate();
    async function Hendellsubmited(e){
@@ -19,7 +19,6 @@ export default function Register() {
       !Secondname || 
       !Email || 
       !Firstsecurity || 
-      !Secondsecurity || 
       !Phone){
         Swal.fire('يرجى ملء جميع الحقول');
         console.log('يرجى ملء جميع الحقول');
@@ -127,18 +126,7 @@ export default function Register() {
                     id='كلمه'
                      type="password" />
                 </div>
-                <div className='flex  w-full flex-col gap-1 items-end'>
-                    <label htmlFor="تأكيد">تأكيد كلمة المرور</label>
-                    <input
-                     onChange={(e)=>{
-                        setSecondsecurity(e.target.value);
-                        
-                    }}
-                    required
-                    className='w-full h-[50px] text-end pr-[10px] rounded-lg outline-none border'
-                    id='تأكيد'
-                     type="password" />
-                </div>
+               
                 <h1 className='text-2xl font-semibold'>  التحقق من الهاتف المحمول</h1>
                 <div className='flex  w-full flex-col gap-1 items-end'>
                     <label htmlFor="رقم الموبايل">رقم الموبايل</label>

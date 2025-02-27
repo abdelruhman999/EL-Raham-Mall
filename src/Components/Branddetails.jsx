@@ -34,7 +34,10 @@ export default function Branddetails() {
       :
       branddata.map((el)=>{
         return(
-          <ProductShape key={el.id} props = {el}/>  
+          <div className='w-[45%]'>
+
+            <ProductShape key={el.id} props = {el}/>  
+          </div>
         )
       })
       
