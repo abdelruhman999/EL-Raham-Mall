@@ -28,7 +28,7 @@ export default function Slidabrand() {
           spaceBetween={0}
           slidesPerView={5}
           breakpoints={{
-            390: { slidesPerView: 4 }, 
+            0: { slidesPerView: 4 }, 
             1024: { slidesPerView: 5 }, 
           }}
           className="w-full "

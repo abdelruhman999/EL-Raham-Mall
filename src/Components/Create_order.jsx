@@ -18,7 +18,7 @@ export default function Create_order() {
     const { total } = useContext(totalcontext);
 
     const [product, setproduct] = useState({
-        active:0,
+        active:'',
         idcountry: '',
         district: '',
         apartment: '',
@@ -62,8 +62,13 @@ export default function Create_order() {
 
    
     useEffect(() => {
-        henddeleclick(product.active)
+      if(product.active !==''){
+        console.log(product.active);
+        
+          henddeleclick(product.active)
+      }     
     }, [product.active]);
+
     useEffect(() => {
       
         if (data1) {
@@ -159,7 +164,8 @@ export default function Create_order() {
                 }).then((res)=>{
                     console.log(res);
                     sethedden(false)
-                    window.open(res.url, '_blank');
+                    window.open(res.url);
+                    localStorage.removeItem('data1')
 
                 })
             })

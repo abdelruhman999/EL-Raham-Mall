@@ -59,7 +59,7 @@ export default function Products() {
                                       spaceBetween={0}
                                       slidesPerView={5}
                                       breakpoints={{
-                                        390: { slidesPerView: 2 }, 
+                                        0: { slidesPerView: 2 }, 
                                         1024: { slidesPerView: 5 }, 
                                       }}
                                       className="w-full "

@@ -59,9 +59,9 @@ export default function Cutogrydetails() {
        maxandmin &&
        maxandmin.map((el) => {
               return ( 
-                <div className=' xs:w-[48%]'>
+                <div key={el.id} className=' xs:w-[48%]'>
 
-                  <ProductShape key={el.id}  props = {el}/>       
+                  <ProductShape   props = {el}/>       
                 </div>
                    );
           })

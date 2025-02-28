@@ -7,10 +7,8 @@ export default {
   theme: {
     extend: {
       screens: {
-        // 'xs': '480px',
-        // '3xl': '1600px',
-
-        xs: { min: '10px', max: '390px' },
+       
+        xs: { min: '0px', max: '375px' },
         sm: { min: '768px', max: '5200px' },
       },
     },

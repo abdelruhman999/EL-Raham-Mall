@@ -223,7 +223,7 @@ export default function Navpar() {
         </div>
       </div>
       <ul
-        className={`absolute text-black ${Correct ? 'block' : 'hidden'} left-0 top-[43px] p-[10px] bg-white shadow z-10 xs:left-[-115px]`}
+        className={`absolute text-black ${Correct ? 'block' : 'hidden'} left-0 top-[45px] p-[10px] bg-white shadow z-10 xs:left-[-125px]`}
       >
         {catogryname &&
           catogryname.map((el) => {

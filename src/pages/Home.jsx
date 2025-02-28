@@ -13,6 +13,9 @@ import Saledetails from '../Components/Saledetails';
 import Resultpaymentdetails from '../Components/Resultpaymentdetails';
 import Previousorders from '../Components/Previousorders';
 import { AUTH_KEY, Expire } from '../utils/constants';
+import AboutUs from '../Components/AboutUs ';
+import MainBranch from '../Components/MainBranch ';
+import ContactUs from '../Components/ContactUs ';
 
 
 
@@ -98,6 +101,9 @@ export default function Home() {
           <Route path='sale' element = {<Saledetails/>}/>
           <Route path='/Resultpaymentdetails' element = {<Resultpaymentdetails/>}/>
           <Route path='/Previousorders' element = {<Previousorders/>}/>
+          <Route path='/من نحن' element = {<AboutUs/>}/>
+          <Route path='/الفرع الرئيسي' element = {<MainBranch/>}/>
+          <Route path='/عنوانا' element = {<ContactUs/>}/>
          
         </Routes>
 

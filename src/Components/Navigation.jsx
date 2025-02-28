@@ -63,7 +63,6 @@ export default function Navigation() {
      texts={[
          'من نحن ',
          'الفرع الرئيسي',
-         'تطبيقاتنا',
          'عنوانا',
 
      ]}
